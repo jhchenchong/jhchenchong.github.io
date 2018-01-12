@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="写在前面RAC不是什么新鲜的概念了，这段时间闲来无事，就把自己项目中使用到的网络请求尝试用RAC封装了一下。 封装网络请求RAC的核心是信号，在封装网络请求的过程中，把每一个网络请求封装成一个信号。 123+ (RACSignal *)GET:(NSString *)url parameters:(id)parameters isCache:(BOOL)isCache;+ (RACSignal *">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/01/12/hello-world/index.html">
+<meta property="og:title" content="基于RAC封装带缓存的网络请求">
+<meta property="og:url" content="http://yoursite.com/2018/01/12/基于RAC封装带缓存的网络请求/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="写在前面RAC不是什么新鲜的概念了，这段时间闲来无事，就把自己项目中使用到的网络请求尝试用RAC封装了一下。 封装网络请求RAC的核心是信号，在封装网络请求的过程中，把每一个网络请求封装成一个信号。 123+ (RACSignal *)GET:(NSString *)url parameters:(id)parameters isCache:(BOOL)isCache;+ (RACSignal *">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-12T08:11:18.235Z">
+<meta property="og:updated_time" content="2018-01-12T09:30:17.138Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="基于RAC封装带缓存的网络请求">
+<meta name="twitter:description" content="写在前面RAC不是什么新鲜的概念了，这段时间闲来无事，就把自己项目中使用到的网络请求尝试用RAC封装了一下。 封装网络请求RAC的核心是信号，在封装网络请求的过程中，把每一个网络请求封装成一个信号。 123+ (RACSignal *)GET:(NSString *)url parameters:(id)parameters isCache:(BOOL)isCache;+ (RACSignal *">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/12/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/12/基于RAC封装带缓存的网络请求/"/>
 
 
 
 
 
-  <title>Hello World | 浪漫恋星空的博客</title>
+  <title>基于RAC封装带缓存的网络请求 | 浪漫恋星空的博客</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/基于RAC封装带缓存的网络请求/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">基于RAC封装带缓存的网络请求</h1>
         
 
         <div class="post-meta">
@@ -261,7 +261,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T16:11:18+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
                 2018-01-12
               </time>
             
@@ -299,15 +299,16 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>RAC不是什么新鲜的概念了，这段时间闲来无事，就把自己项目中使用到的网络请求尝试用RAC封装了一下。</p>
+<h3 id="封装网络请求"><a href="#封装网络请求" class="headerlink" title="封装网络请求"></a>封装网络请求</h3><p>RAC的核心是信号，在封装网络请求的过程中，把每一个网络请求封装成一个信号。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+ (RACSignal *)GET:(<span class="built_in">NSString</span> *)url parameters:(<span class="keyword">id</span>)parameters isCache:(<span class="built_in">BOOL</span>)isCache;</span><br><span class="line"></span><br><span class="line">+ (RACSignal *)POST:(<span class="built_in">NSString</span> *)url parameters:(<span class="keyword">id</span>)parameters isCache:(<span class="built_in">BOOL</span>)isCache;</span><br></pre></td></tr></table></figure>
+<p>项目中常用的就是这两个网络请求方法，这两个方法的实现也很简单。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">+ (RACSignal *)GET:(<span class="built_in">NSString</span> *)url parameters:(<span class="keyword">id</span>)parameters isCache:(<span class="built_in">BOOL</span>)isCache &#123;</span><br><span class="line">    <span class="comment">/// 创建信号</span></span><br><span class="line">    RACSignal *signal = [RACSignal createSignal:^RACDisposable * _Nullable(<span class="keyword">id</span>&lt;RACSubscriber&gt;  _Nonnull subscriber) &#123;</span><br><span class="line">        <span class="comment">/// 读缓存的数据</span></span><br><span class="line">        isCache ? [subscriber sendNext:[[XKCache sharedInstance] httpCacheForURL:url parameters:parameters]] : <span class="literal">nil</span>;</span><br><span class="line">        <span class="comment">/// 基于AFNetworking发起网络请求</span></span><br><span class="line">        <span class="built_in">NSURLSessionDataTask</span> *task = [_sessionManager GET:url parameters:parameters progress:<span class="literal">nil</span> success:^(<span class="built_in">NSURLSessionDataTask</span> * _Nonnull task, <span class="keyword">id</span>  _Nullable responseObject) &#123;</span><br><span class="line">            <span class="comment">/// 请求成功</span></span><br><span class="line">            [subscriber sendNext:responseObject];</span><br><span class="line">            </span><br><span class="line">            [subscriber sendCompleted];</span><br><span class="line">            <span class="comment">/// 记录缓存数据</span></span><br><span class="line">            isCache ? [[XKCache sharedInstance] setHttpCache:responseObject URL:url parameters:parameters] : <span class="literal">nil</span>;</span><br><span class="line">            </span><br><span class="line">        &#125; failure:^(<span class="built_in">NSURLSessionDataTask</span> * _Nullable task, <span class="built_in">NSError</span> * _Nonnull error) &#123;</span><br><span class="line">           </span><br><span class="line">            [subscriber sendError:error];</span><br><span class="line">        &#125;];</span><br><span class="line">        <span class="comment">/// 当信号被销毁的时候 取消网络请求</span></span><br><span class="line">        <span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</span><br><span class="line">            </span><br><span class="line">            [task cancel];</span><br><span class="line">            </span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> signal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大致的思路就是样的，网络层的封装思路参照的是<a href="https://github.com/jkpang/PPNetworkHelper" target="_blank" rel="noopener">PPNetworkHelper</a>。当然，你也可以<a href="https://github.com/jhchenchong/XKNetworkingManager" target="_blank" rel="noopener">点击这里下载Demo工程</a>，查看具体的封装细节。</p>
+<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p>在需要做网络请求的地方</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">RACDisposable *disposable = [[XKNetworkingManager GET:<span class="string">@""</span> parameters:<span class="literal">nil</span> isCache:<span class="literal">YES</span>] subscribeNext:^(<span class="keyword">id</span>  _Nullable x) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 网络请求成功  如果isCache为YES 这个block会走两次 第一次回来的是缓存数据 第二次是请求成功的数据。</span></span><br><span class="line">        </span><br><span class="line">    &#125; error:^(<span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 出错</span></span><br><span class="line">        </span><br><span class="line">    &#125; completed:^&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 信号完成 执行完这个之后信号会销毁</span></span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+<p>如果想要取消这个网络请求，调用<code>[disposable dispose]</code>。这里有点需要注意的是，调用<code>[task cancel]</code>是会走AFNetworking失败的回调的。但是，在外界是收不到取消网络请求的这个失败的。因为在外界取消这个网络请求的时候是销毁的信号。信号销毁了就不会再继续发送了，所以也订阅不到了。这里不知道有没有更好的处理方式。</p>
+<h3 id="特别感谢"><a href="#特别感谢" class="headerlink" title="特别感谢"></a>特别感谢</h3><p><a href="https://github.com/jkpang/PPNetworkHelper" target="_blank" rel="noopener">PPNetworkHelper</a></p>
 
       
     </div>
@@ -452,7 +453,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装网络请求"><span class="nav-number">2.</span> <span class="nav-text">封装网络请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用"><span class="nav-number">3.</span> <span class="nav-text">如何使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特别感谢"><span class="nav-number">4.</span> <span class="nav-text">特别感谢</span></a></li></ol></div>
             
 
           </div>
