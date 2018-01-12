@@ -190,6 +190,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -537,157 +557,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/Safe-Area-Layout-Guide/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="浪漫恋星空">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="浪漫恋星空的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/12/Safe-Area-Layout-Guide/" itemprop="url">Safe Area Layout Guide before iOS 9.0</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Safe Area Layout Guide before iOS 9.0今天升级了Xcode 9，在使用Xcode 9创建一个iOS 8.0的新项目的时候，报错Safe Area Layout Guide before iOS 9.0。
-解决办法将Main.storyboard和LaunchScreen.storyboard中的Use Safe Area Layout Guide复选框去掉。如图：
-
-
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/Safe-Area-Layout-Guide/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/OC实现有趣的过山车动画/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -844,7 +713,7 @@ CAKeyframeAnimation
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/WKWebView在iOS8上的闪退异常/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/Safe-Area-Layout-Guide/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -863,7 +732,7 @@ CAKeyframeAnimation
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/12/WKWebView在iOS8上的闪退异常/" itemprop="url">WKWebView在iOS8上闪退异常</a></h1>
+                <a class="post-title-link" href="/2018/01/12/Safe-Area-Layout-Guide/" itemprop="url">Safe Area Layout Guide before iOS 9.0</a></h1>
         
 
         <div class="post-meta">
@@ -937,13 +806,14 @@ CAKeyframeAnimation
       
         
           
-          前言项目接近尾声，昨天在测试的时候发现了一个闪退的问题。测试的设备为iPhone5s，系统是iOS 8.3，其他的测试设备都不会崩溃。临近下班，就没有多想，感觉就是一个谜之bug，从Bugly反馈的日志看，也只能看到是因为内存释放出栈异常。一早上班就看了一下这个闪退的问题。记录一下两个小时的爬坑记。
-Bug描述设备：iPhone5s，系统：iOS 8.3，在进入一个WKWebView加载的本地html标签的页面，退出该页面必定闪退。而且这个问题只会出现在iOS 10以下的系统。
-为爱Debug因为知道是内存释放的问题，所以从dealloc方法入手，发现程序正常的走了dealloc方法，然后就崩溃了。因为这是一个很简单的页面，整个页面就三个控件，WKWebView和两个UIButton，两个Button是根据WKWebView的滚动与否决定显不显示。然后发现只要这个页面有WKWebView就会崩溃。通过分析发现，是因为设置了WKWebView.scrollView.delegate，而scrollView在WKWebView是strong强引用的，而在这个页面监听了scrollView的
-          ...
+          Safe Area Layout Guide before iOS 9.0今天升级了Xcode 9，在使用Xcode 9创建一个iOS 8.0的新项目的时候，报错Safe Area Layout Guide before iOS 9.0。
+解决办法将Main.storyboard和LaunchScreen.storyboard中的Use Safe Area Layout Guide复选框去掉。如图：
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/WKWebView在iOS8上的闪退异常/#more" rel="contents">
+            <a class="btn" href="/2018/01/12/Safe-Area-Layout-Guide/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1096,6 +966,156 @@ Bug描述设备：iPhone5s，系统：iOS 8.3，在进入一个WKWebView加载�
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/12/UITableViewCell嵌套UIWebView高度自适应，设置字号，拦截图片点击事件。/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/WKWebView在iOS8上的闪退异常/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/12/WKWebView在iOS8上的闪退异常/" itemprop="url">WKWebView在iOS8上闪退异常</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言项目接近尾声，昨天在测试的时候发现了一个闪退的问题。测试的设备为iPhone5s，系统是iOS 8.3，其他的测试设备都不会崩溃。临近下班，就没有多想，感觉就是一个谜之bug，从Bugly反馈的日志看，也只能看到是因为内存释放出栈异常。一早上班就看了一下这个闪退的问题。记录一下两个小时的爬坑记。
+Bug描述设备：iPhone5s，系统：iOS 8.3，在进入一个WKWebView加载的本地html标签的页面，退出该页面必定闪退。而且这个问题只会出现在iOS 10以下的系统。
+为爱Debug因为知道是内存释放的问题，所以从dealloc方法入手，发现程序正常的走了dealloc方法，然后就崩溃了。因为这是一个很简单的页面，整个页面就三个控件，WKWebView和两个UIButton，两个Button是根据WKWebView的滚动与否决定显不显示。然后发现只要这个页面有WKWebView就会崩溃。通过分析发现，是因为设置了WKWebView.scrollView.delegate，而scrollView在WKWebView是strong强引用的，而在这个页面监听了scrollView的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/12/WKWebView在iOS8上的闪退异常/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
