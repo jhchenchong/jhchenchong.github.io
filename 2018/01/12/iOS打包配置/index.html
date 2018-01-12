@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="打包," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一. 开发账号介绍苹果的开发者账号主要分为三类：  个人（Individual） 组织（Organizations） 教育机构（Educational Institutions）  其中“组织”中又分为2个小类：  公司（Company） 企业（Enterprise）  我们经常最关注的是个人、公司、企业这3类：  个人：个人账号只支持单人开发，即一个主体账号，可以申请升级为公司帐号。 公司：公司">
+<meta name="keywords" content="打包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS打包配置">
+<meta property="og:url" content="http://yoursite.com/2018/01/12/iOS打包配置/index.html">
+<meta property="og:site_name" content="浪漫恋星空的博客">
+<meta property="og:description" content="一. 开发账号介绍苹果的开发者账号主要分为三类：  个人（Individual） 组织（Organizations） 教育机构（Educational Institutions）  其中“组织”中又分为2个小类：  公司（Company） 企业（Enterprise）  我们经常最关注的是个人、公司、企业这3类：  个人：个人账号只支持单人开发，即一个主体账号，可以申请升级为公司帐号。 公司：公司">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-351dbc9a58d8bfd7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-a1d0b9da33f40f13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-ee37089c53e08c01.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-514fb0dec827ef2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-dcbdc52f97a78639.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-08ed80812249d867.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-45d74a8b06a47587.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-8d89f3d387b0b167.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-672e43adcbad104f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-a9683fc699d488b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-096110ba4ee74e74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-bcd963b35d50e123.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-6f340f1241c76eb8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-882c9156177bbb16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-2df6721ccc8d5fcf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-0d40a171838fffde.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-1ddb7d7b6b5c11b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-8fa38cf0d00c25ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-206711ea9f63da45.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-01-12T13:43:22.542Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS打包配置">
+<meta name="twitter:description" content="一. 开发账号介绍苹果的开发者账号主要分为三类：  个人（Individual） 组织（Organizations） 教育机构（Educational Institutions）  其中“组织”中又分为2个小类：  公司（Company） 企业（Enterprise）  我们经常最关注的是个人、公司、企业这3类：  个人：个人账号只支持单人开发，即一个主体账号，可以申请升级为公司帐号。 公司：公司">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1777873-351dbc9a58d8bfd7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/12/iOS打包配置/"/>
+
+
+
+
+
+  <title>iOS打包配置 | 浪漫恋星空的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浪漫恋星空的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">从陌生的闭区间到爱的开区间 流淌的是岁月 不变的是时间 只是有段回忆 会永远被铭记 --[陌生，爱） 陌路伊始 相爱无期</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/iOS打包配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS打包配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一-开发账号介绍"><a href="#一-开发账号介绍" class="headerlink" title="一. 开发账号介绍"></a>一. 开发账号介绍</h3><p>苹果的开发者账号主要分为三类：</p>
+<ul>
+<li>个人（Individual）</li>
+<li>组织（Organizations）</li>
+<li>教育机构（Educational Institutions）</li>
+</ul>
+<p>其中“组织”中又分为2个小类：</p>
+<ul>
+<li>公司（Company）</li>
+<li>企业（Enterprise）</li>
+</ul>
+<p>我们经常最关注的是个人、公司、企业这3类：</p>
+<ul>
+<li>个人：个人账号只支持单人开发，即一个主体账号，可以申请升级为公司帐号。</li>
+<li>公司：公司账号和企业账号支持协作开发，可邀请其他人加入团队，比个人多一些帐号管理的设置，可设置多个Apple ID，分4种管理级别的权限。</li>
+<li>企业：企业账号大多用于内部分发测试。跟前面两种账号不同的是，个人和公司账号开发的应用可以上线App Store，企业账号则不能。</li>
+</ul>
+<h3 id="二-创建证书"><a href="#二-创建证书" class="headerlink" title="二. 创建证书"></a>二. 创建证书</h3><p>证书有开发证书，发布证书，推送证书等，这里只介绍开发证书和发布证书。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-351dbc9a58d8bfd7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image1.png"></p>
+<p>无论创建开发证书还是发布证书均会到如下图一步：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-a1d0b9da33f40f13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image2.png"><br>此处需要CSR文件，创建方法如下：</p>
+<ul>
+<li>打开“钥匙串访问”应用<br><img src="http://upload-images.jianshu.io/upload_images/1777873-ee37089c53e08c01.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image3.png"></li>
+<li>生成CSR文件</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-514fb0dec827ef2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image4.png"></p>
+<ul>
+<li>生成证书后下载到电脑，双击安装，然后可在钥匙串中查看：</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-dcbdc52f97a78639.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image5.png"></p>
+<p>注意：只有拥有私钥的证书才能进行签名打包。如果想要在其他电脑上也能使用该私钥，需要拥有私钥的电脑将该证书导出为p12文件，其他电脑直接下载证书无法获得私钥。<br>提示：企业账号和公司账号支持协作开发，每一个加入的成员均可以创建一个属于自己的开发证书用于打开发包测试。</p>
+<h3 id="三-注册App-ID"><a href="#三-注册App-ID" class="headerlink" title="三. 注册App ID"></a>三. 注册App ID</h3><p><img src="http://upload-images.jianshu.io/upload_images/1777873-08ed80812249d867.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image6.png"><br>如下图操作：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-45d74a8b06a47587.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image7.png"><br>App ID具有唯一性，如果你的App ID已经在该账号或其他账号里注册过，则会注册失败，更改你的App ID或将原来那个删除才能继续注册。</p>
+<h3 id="四．生成描述文件"><a href="#四．生成描述文件" class="headerlink" title="四．生成描述文件"></a>四．生成描述文件</h3><p>描述文件包含一些打包签名所需要的信息，比如App ID，证书，测试设备。<br>描述文件分为开发和生产，详细见下两图：<br>下图为个人和公司账号描述文件生成页：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-8d89f3d387b0b167.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image8.png"><br>下图为企业账号描述文件生成页：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-672e43adcbad104f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image9.png"><br>创建描述文件时分四步：</p>
+<ul>
+<li>选择已注册的App ID</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-a9683fc699d488b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image10.png"></p>
+<ul>
+<li>选择证书</li>
+</ul>
+<p>选择开发证书：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-096110ba4ee74e74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image11.png"><br>或者选择发布证书：<br><img src="http://upload-images.jianshu.io/upload_images/1777873-bcd963b35d50e123.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image12.png"><br>注：开发者证书可以选择多个，发布证书只能选一个，选择证书时确保本地已安装该证书并拥有私钥。</p>
+<ul>
+<li>选择测试设备（生成发布描述文件时没有这一步）</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-6f340f1241c76eb8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image13.png"></p>
+<p>注：用该开发描述文件打的ipa包，只能在上面所选择的设备上安装，包括直接在Xcode上执行Run安装到设备上也需要设备在该列表内，若要安装在更多设备上需要添加测试设备并编辑该描述文件然后重新下载该描述文件。</p>
+<ul>
+<li>命名描述文件完成创建</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-882c9156177bbb16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image14.png"></p>
+<p>创建完成后直接下载双击即可。</p>
+<h3 id="五-Xcode打包配置"><a href="#五-Xcode打包配置" class="headerlink" title="五.  Xcode打包配置"></a>五.  Xcode打包配置</h3><p>在Targets-&gt;General中做如下配置：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-2df6721ccc8d5fcf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image15.png"></p>
+<p>然后进行Archive打包，完成后进行导出出现下图提示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-0d40a171838fffde.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image16.png"><br>选择所需要的包类型后即可生成ipa包</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-1ddb7d7b6b5c11b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image17.png"></p>
+<h3 id="六．证书过期或被删除"><a href="#六．证书过期或被删除" class="headerlink" title="六．证书过期或被删除"></a>六．证书过期或被删除</h3><ul>
+<li>对于个人或公司账号，已经成功过审并上架的应用，即使为该应用打包时使用的发布证书过期或被删除，也不会对已上架的应用造成任何影响，只会对打新的包造成影响，需要重新生成证书和描述文件。</li>
+<li>对于企业账号，若打包时所用的发布证书过期或被删除，会导致已经安装的应用闪退无法启动，需要重新生成证书和描述文件重新打包。</li>
+<li>无论个人、公司、企业账号，若打开发测试包所用的开发证书过期或被删除，会导致应用无法启动。</li>
+</ul>
+<h3 id="附：Ad-Hoc发布"><a href="#附：Ad-Hoc发布" class="headerlink" title="附：Ad Hoc发布"></a>附：Ad Hoc发布</h3><p>在选择打包类型时有一个选项不常用：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-8fa38cf0d00c25ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image18.png"></p>
+<p>该选项打的ipa的包为Ad Hoc发布包，通过Ad Hoc来实现发布前的用户测试。从另一个角度讲也就是通过Ad Hoc 将未发布的App 给其他人提前免费使用，通过这种方式发布的包不用上架App Store便能使用，但仅限已添加至该开发账号的设备上安装。<br>打Ad Hoc发布包需要另外配置描述文件，需要选择可安装的设备：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-206711ea9f63da45.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image19.png"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/打包/" rel="tag"># 打包</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/12/IQKeyboardManager导航栏上移/" rel="next" title="IQKeyboardManager导航栏上移">
+                <i class="fa fa-chevron-left"></i> IQKeyboardManager导航栏上移
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/12/iOS动态修改状态栏的颜色/" rel="prev" title="iOS动态修改状态栏的颜色">
+                iOS动态修改状态栏的颜色 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg"
+                alt="浪漫恋星空" />
+            
+              <p class="site-author-name" itemprop="name">浪漫恋星空</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心 方得始终 初心易得 始终难守</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jhchenchong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-开发账号介绍"><span class="nav-number">1.</span> <span class="nav-text">一. 开发账号介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-创建证书"><span class="nav-number">2.</span> <span class="nav-text">二. 创建证书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-注册App-ID"><span class="nav-number">3.</span> <span class="nav-text">三. 注册App ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四．生成描述文件"><span class="nav-number">4.</span> <span class="nav-text">四．生成描述文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五-Xcode打包配置"><span class="nav-number">5.</span> <span class="nav-text">五.  Xcode打包配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六．证书过期或被删除"><span class="nav-number">6.</span> <span class="nav-text">六．证书过期或被删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附：Ad-Hoc发布"><span class="nav-number">7.</span> <span class="nav-text">附：Ad Hoc发布</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浪漫恋星空</span>
+
+  
+</div>
+
+
+  <div class="powered-by">  个人专属</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">博客 &mdash; 浪漫恋星空</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

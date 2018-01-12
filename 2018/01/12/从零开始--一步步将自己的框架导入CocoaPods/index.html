@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="iOS,RAC,网络请求," />
+  <meta name="keywords" content="iOS,CocoaPods," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="写在前面RAC不是什么新鲜的概念了，这段时间闲来无事，就把自己项目中使用到的网络请求尝试用RAC封装了一下。 封装网络请求RAC的核心是信号，在封装网络请求的过程中，把每一个网络请求封装成一个信号。 123+ (RACSignal *)GET:(NSString *)url parameters:(id)parameters isCache:(BOOL)isCache;+ (RACSignal *">
-<meta name="keywords" content="iOS,RAC,网络请求">
+<meta name="description" content="写在前面对于做iOS开发的来说，不知道CocoaPods无异于耍流氓。日常开发中我们经常会使用它来管理我们的三方库。用别人的框架用得太多了，慢慢的，撸的代码越来越多，会发现自己在不知不觉间收集了很多好用的扩展，或者那天自己写出一个比较优秀的效果，会想着将这些东西分享出来。当然，我们可以将代码直接丢到GitHub之类的代码托管平台，供大家参考。某年某月某一天，你心血来潮的也想撸个框架。什么？你写了一">
+<meta name="keywords" content="iOS,CocoaPods">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于RAC封装带缓存的网络请求">
-<meta property="og:url" content="http://yoursite.com/2018/01/12/基于RAC封装带缓存的网络请求/index.html">
+<meta property="og:title" content="从零开始 一步步将自己的框架导入CocoaPods">
+<meta property="og:url" content="http://yoursite.com/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
-<meta property="og:description" content="写在前面RAC不是什么新鲜的概念了，这段时间闲来无事，就把自己项目中使用到的网络请求尝试用RAC封装了一下。 封装网络请求RAC的核心是信号，在封装网络请求的过程中，把每一个网络请求封装成一个信号。 123+ (RACSignal *)GET:(NSString *)url parameters:(id)parameters isCache:(BOOL)isCache;+ (RACSignal *">
+<meta property="og:description" content="写在前面对于做iOS开发的来说，不知道CocoaPods无异于耍流氓。日常开发中我们经常会使用它来管理我们的三方库。用别人的框架用得太多了，慢慢的，撸的代码越来越多，会发现自己在不知不觉间收集了很多好用的扩展，或者那天自己写出一个比较优秀的效果，会想着将这些东西分享出来。当然，我们可以将代码直接丢到GitHub之类的代码托管平台，供大家参考。某年某月某一天，你心血来潮的也想撸个框架。什么？你写了一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-12T12:58:10.071Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-b6499df031f92cec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-01-12T13:30:02.851Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于RAC封装带缓存的网络请求">
-<meta name="twitter:description" content="写在前面RAC不是什么新鲜的概念了，这段时间闲来无事，就把自己项目中使用到的网络请求尝试用RAC封装了一下。 封装网络请求RAC的核心是信号，在封装网络请求的过程中，把每一个网络请求封装成一个信号。 123+ (RACSignal *)GET:(NSString *)url parameters:(id)parameters isCache:(BOOL)isCache;+ (RACSignal *">
+<meta name="twitter:title" content="从零开始 一步步将自己的框架导入CocoaPods">
+<meta name="twitter:description" content="写在前面对于做iOS开发的来说，不知道CocoaPods无异于耍流氓。日常开发中我们经常会使用它来管理我们的三方库。用别人的框架用得太多了，慢慢的，撸的代码越来越多，会发现自己在不知不觉间收集了很多好用的扩展，或者那天自己写出一个比较优秀的效果，会想着将这些东西分享出来。当然，我们可以将代码直接丢到GitHub之类的代码托管平台，供大家参考。某年某月某一天，你心血来潮的也想撸个框架。什么？你写了一">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1777873-b6499df031f92cec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/12/基于RAC封装带缓存的网络请求/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/"/>
 
 
 
 
 
-  <title>基于RAC封装带缓存的网络请求 | 浪漫恋星空的博客</title>
+  <title>从零开始 一步步将自己的框架导入CocoaPods | 浪漫恋星空的博客</title>
   
 
 
@@ -233,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/基于RAC封装带缓存的网络请求/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -250,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">基于RAC封装带缓存的网络请求</h1>
+          <h1 class="post-title" itemprop="name headline">从零开始 一步步将自己的框架导入CocoaPods</h1>
         
 
         <div class="post-meta">
@@ -322,16 +324,60 @@
       
 
       
-        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>RAC不是什么新鲜的概念了，这段时间闲来无事，就把自己项目中使用到的网络请求尝试用RAC封装了一下。</p>
-<h3 id="封装网络请求"><a href="#封装网络请求" class="headerlink" title="封装网络请求"></a>封装网络请求</h3><p>RAC的核心是信号，在封装网络请求的过程中，把每一个网络请求封装成一个信号。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+ (RACSignal *)GET:(<span class="built_in">NSString</span> *)url parameters:(<span class="keyword">id</span>)parameters isCache:(<span class="built_in">BOOL</span>)isCache;</span><br><span class="line"></span><br><span class="line">+ (RACSignal *)POST:(<span class="built_in">NSString</span> *)url parameters:(<span class="keyword">id</span>)parameters isCache:(<span class="built_in">BOOL</span>)isCache;</span><br></pre></td></tr></table></figure>
-<p>项目中常用的就是这两个网络请求方法，这两个方法的实现也很简单。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">+ (RACSignal *)GET:(<span class="built_in">NSString</span> *)url parameters:(<span class="keyword">id</span>)parameters isCache:(<span class="built_in">BOOL</span>)isCache &#123;</span><br><span class="line">    <span class="comment">/// 创建信号</span></span><br><span class="line">    RACSignal *signal = [RACSignal createSignal:^RACDisposable * _Nullable(<span class="keyword">id</span>&lt;RACSubscriber&gt;  _Nonnull subscriber) &#123;</span><br><span class="line">        <span class="comment">/// 读缓存的数据</span></span><br><span class="line">        isCache ? [subscriber sendNext:[[XKCache sharedInstance] httpCacheForURL:url parameters:parameters]] : <span class="literal">nil</span>;</span><br><span class="line">        <span class="comment">/// 基于AFNetworking发起网络请求</span></span><br><span class="line">        <span class="built_in">NSURLSessionDataTask</span> *task = [_sessionManager GET:url parameters:parameters progress:<span class="literal">nil</span> success:^(<span class="built_in">NSURLSessionDataTask</span> * _Nonnull task, <span class="keyword">id</span>  _Nullable responseObject) &#123;</span><br><span class="line">            <span class="comment">/// 请求成功</span></span><br><span class="line">            [subscriber sendNext:responseObject];</span><br><span class="line">            </span><br><span class="line">            [subscriber sendCompleted];</span><br><span class="line">            <span class="comment">/// 记录缓存数据</span></span><br><span class="line">            isCache ? [[XKCache sharedInstance] setHttpCache:responseObject URL:url parameters:parameters] : <span class="literal">nil</span>;</span><br><span class="line">            </span><br><span class="line">        &#125; failure:^(<span class="built_in">NSURLSessionDataTask</span> * _Nullable task, <span class="built_in">NSError</span> * _Nonnull error) &#123;</span><br><span class="line">           </span><br><span class="line">            [subscriber sendError:error];</span><br><span class="line">        &#125;];</span><br><span class="line">        <span class="comment">/// 当信号被销毁的时候 取消网络请求</span></span><br><span class="line">        <span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</span><br><span class="line">            </span><br><span class="line">            [task cancel];</span><br><span class="line">            </span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> signal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>大致的思路就是样的，网络层的封装思路参照的是<a href="https://github.com/jkpang/PPNetworkHelper" target="_blank" rel="noopener">PPNetworkHelper</a>。当然，你也可以<a href="https://github.com/jhchenchong/XKNetworkingManager" target="_blank" rel="noopener">点击这里下载Demo工程</a>，查看具体的封装细节。</p>
-<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p>在需要做网络请求的地方</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">RACDisposable *disposable = [[XKNetworkingManager GET:<span class="string">@""</span> parameters:<span class="literal">nil</span> isCache:<span class="literal">YES</span>] subscribeNext:^(<span class="keyword">id</span>  _Nullable x) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 网络请求成功  如果isCache为YES 这个block会走两次 第一次回来的是缓存数据 第二次是请求成功的数据。</span></span><br><span class="line">        </span><br><span class="line">    &#125; error:^(<span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 出错</span></span><br><span class="line">        </span><br><span class="line">    &#125; completed:^&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 信号完成 执行完这个之后信号会销毁</span></span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
-<p>如果想要取消这个网络请求，调用<code>[disposable dispose]</code>。这里有点需要注意的是，调用<code>[task cancel]</code>是会走AFNetworking失败的回调的。但是，在外界是收不到取消网络请求的这个失败的。因为在外界取消这个网络请求的时候是销毁的信号。信号销毁了就不会再继续发送了，所以也订阅不到了。这里不知道有没有更好的处理方式。</p>
-<h3 id="特别感谢"><a href="#特别感谢" class="headerlink" title="特别感谢"></a>特别感谢</h3><p><a href="https://github.com/jkpang/PPNetworkHelper" target="_blank" rel="noopener">PPNetworkHelper</a></p>
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>对于做iOS开发的来说，不知道CocoaPods无异于耍流氓。日常开发中我们经常会使用它来管理我们的三方库。用别人的框架用得太多了，慢慢的，撸的代码越来越多，会发现自己在不知不觉间收集了很多好用的扩展，或者那天自己写出一个比较优秀的效果，会想着将这些东西分享出来。当然，我们可以将代码直接丢到GitHub之类的代码托管平台，供大家参考。某年某月某一天，你心血来潮的也想撸个框架。什么？你写了一个框架，竟然不支持CocoaPods？程序员大多数都是懒的，能用一行代码解决的事情绝不写两行，更何况CocoaPods这么好用的东西，好的框架不支持怎么行啊？这里把自己写的小东西是如何一步一步支持CocoaPods的作一个介绍。希望有需要的小伙伴能从这里看到你想要的东西。</p>
+<h3 id="1-创建一个开源项目"><a href="#1-创建一个开源项目" class="headerlink" title="1.创建一个开源项目"></a>1.创建一个开源项目</h3><p>在GitHub上创建一个开源项目，将自己想要开源的东西先托管到GitHub上。这个步骤不是本篇文章的关键，这里不多作赘述。如果不熟悉的小伙伴请自行谷歌上百度一下，或者就近在简书你搜索一下说不定也有奇效。</p>
+<h3 id="2-给项目打上Tag"><a href="#2-给项目打上Tag" class="headerlink" title="2.给项目打上Tag"></a>2.给项目打上Tag</h3><p>在项目的GitHub主页中，点击release直接创建一个Tag就好了。这里的Tag在后面会用到。</p>
+<h3 id="3-在工程中的根目录下创建一个podspec文件"><a href="#3-在工程中的根目录下创建一个podspec文件" class="headerlink" title="3.在工程中的根目录下创建一个podspec文件"></a>3.在工程中的根目录下创建一个podspec文件</h3><p>具体的做法是cd到工程根目录，执行下面的命令。</p>
+<blockquote>
+<p>pod spec create 你想要的名字</p>
+</blockquote>
+<p>执行命令会在该目录下生成一个 你想要的名字.podspec文件。</p>
+<h3 id="4-编辑podspec文件"><a href="#4-编辑podspec文件" class="headerlink" title="4.编辑podspec文件"></a>4.编辑podspec文件</h3><p>还是在刚刚的目录下，执行下面命令。</p>
+<blockquote>
+<p>vim 你想要的名字.podspec</p>
+</blockquote>
+<p>进入之后你会发现这个文件中有非常详细的文档说明。按照文档的说明将我们的项目的信息填写上就好了。当然，我们也可以直接在GitHub上随便找一个开源项目。然后把它的podspec文件打开。然后对着修改自己的podspec文件就好了。这里贴出我的一个podspec文件供大家参考。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |s|</span><br><span class="line">s.name = &apos;AnimatedLayout&apos;</span><br><span class="line">s.version = &apos;1.0.0&apos;</span><br><span class="line">s.license = &apos;MIT&apos;</span><br><span class="line">s.summary = &apos;An animatedLayout of UICollectionView&apos;</span><br><span class="line">s.homepage = &apos;https://github.com/jhchenchong/AnimatedLayout&apos;</span><br><span class="line">s.authors = &#123; &apos;浪漫恋星空&apos; =&gt; &apos;727378500@qq.com&apos; &#125;</span><br><span class="line">s.source = &#123; :git =&gt; &apos;https://github.com/jhchenchong/AnimatedLayout.git&apos;, :tag =&gt; s.version.to_s &#125;</span><br><span class="line">s.requires_arc = true</span><br><span class="line">s.ios.deployment_target = &apos;8.0&apos;</span><br><span class="line">s.source_files = &apos;AnimatedLayout/AnimatedLayout/AnimatedLayout/*.&#123;h,m&#125;&apos;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>s.version就是之前说的要用到的Tag（这里一定要保持一致）。</p>
+<p>s.source_files这个文件目录结构，跟自己的目录结构是有关的。<br><img src="http://upload-images.jianshu.io/upload_images/1777873-b6499df031f92cec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录"><br>这是我的目录，可以根据实际情况修改自己的s.source_files。</p>
+<p>还有其他的一些命令，比如说你的框架中所依赖的核心库，可以使用下面的命令。</p>
+<blockquote>
+<p>s.framework  = “Framework1”，”Framework2”</p>
+</blockquote>
+<p>如果你的项目中还依赖了三方的库，可以像这样使用：</p>
+<blockquote>
+<p>s.dependency “AFNetworking”, “~&gt; 3.1”</p>
+</blockquote>
+<p>如果要依赖很多的三方库，就按照上面的写法，多写几个s.dependency就好了。</p>
+<p>编辑完podspec文件之后，需要验证该文件。</p>
+<blockquote>
+<p>pod spec lint xxx.podspec</p>
+</blockquote>
+<p>xxx passed validation 说明验证通过了。如果出现警告或者错误，对照着提示开始改，一直改到没有错误为止。最开始填写的时候总是会有一些小问题，不要着急，一点一点慢慢的修改就好了。</p>
+<h3 id="5-注册Trunk"><a href="#5-注册Trunk" class="headerlink" title="5.注册Trunk"></a>5.注册Trunk</h3><p>这里需要CocoaPods的版本在0.33以上，现在应该都是在这个版本之上了吧。执行 pod –version 命令查看CocoaPods版本信息。如果不满足的话，请先更新到正确的版本。</p>
+<blockquote>
+<p>pod trunk register  ‘邮箱’ –description=’描述’</p>
+</blockquote>
+<p>注册成功的话，邮箱会收到验证邮件。点进去激活就好了。</p>
+<blockquote>
+<p>pod trunk me</p>
+</blockquote>
+<p>执行该命令，可以查看自己的信息。</p>
+<h3 id="6-pod-trunk-push"><a href="#6-pod-trunk-push" class="headerlink" title="6.pod trunk push"></a>6.pod trunk push</h3><p>执行命令</p>
+<blockquote>
+<p>pod trunk push xxx.podspec</p>
+</blockquote>
+<p>前面的podspec文件如果验证都合法的话，恭喜你，你应该已经将自己的框架增加了CocoaPods支持。</p>
+<p>最后，如果你在执行pod search 命令的时候发现找不到自己的框架。可以尝试下面的方法。</p>
+<ul>
+<li>执行 pod setup 命令</li>
+<li>等待 pod setup 成功</li>
+<li>执行 rm ~/Library/Caches/CocoaPods/search_index.json<br>做完这些之后，在 pod search 一下试试。</li>
+</ul>
+<p>参考文献</p>
+<ul>
+<li><a href="http://www.cnblogs.com/wntd/p/5895253.html" target="_blank" rel="noopener">http://www.cnblogs.com/wntd/p/5895253.html</a></li>
+</ul>
 
       
     </div>
@@ -351,9 +397,7 @@
           
             <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            <a href="/tags/RAC/" rel="tag"># RAC</a>
-          
-            <a href="/tags/网络请求/" rel="tag"># 网络请求</a>
+            <a href="/tags/CocoaPods/" rel="tag"># CocoaPods</a>
           
         </div>
       
@@ -366,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/12/带PlaceHolder的UITextView/" rel="next" title="带PlaceHolder的UITextView">
-                <i class="fa fa-chevron-left"></i> 带PlaceHolder的UITextView
+              <a href="/2018/01/12/一个简单的获取验证码控件的封装/" rel="next" title="一个简单的获取验证码控件的封装">
+                <i class="fa fa-chevron-left"></i> 一个简单的获取验证码控件的封装
               </a>
             
           </div>
@@ -376,8 +420,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/" rel="prev" title="基本排序算法的OC实现">
-                基本排序算法的OC实现 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/12/IQKeyboardManager导航栏上移/" rel="prev" title="IQKeyboardManager导航栏上移">
+                IQKeyboardManager导航栏上移 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -524,7 +568,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装网络请求"><span class="nav-number">2.</span> <span class="nav-text">封装网络请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用"><span class="nav-number">3.</span> <span class="nav-text">如何使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特别感谢"><span class="nav-number">4.</span> <span class="nav-text">特别感谢</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建一个开源项目"><span class="nav-number">2.</span> <span class="nav-text">1.创建一个开源项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-给项目打上Tag"><span class="nav-number">3.</span> <span class="nav-text">2.给项目打上Tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在工程中的根目录下创建一个podspec文件"><span class="nav-number">4.</span> <span class="nav-text">3.在工程中的根目录下创建一个podspec文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-编辑podspec文件"><span class="nav-number">5.</span> <span class="nav-text">4.编辑podspec文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-注册Trunk"><span class="nav-number">6.</span> <span class="nav-text">5.注册Trunk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-pod-trunk-push"><span class="nav-number">7.</span> <span class="nav-text">6.pod trunk push</span></a></li></ol></div>
             
 
           </div>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="自定义视图,验证码," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="写在前面在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。 实现效果 实现思路自定义一个UIView，在这个View上添加一个显示进度的ProgressView，和一个显示文字的UILabel。">
+<meta name="keywords" content="自定义视图,验证码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个简单的获取验证码控件的封装">
+<meta property="og:url" content="http://yoursite.com/2018/01/12/一个简单的获取验证码控件的封装/index.html">
+<meta property="og:site_name" content="浪漫恋星空的博客">
+<meta property="og:description" content="写在前面在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。 实现效果 实现思路自定义一个UIView，在这个View上添加一个显示进度的ProgressView，和一个显示文字的UILabel。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-110fedabc97ea4c4.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-0af13d1a6df734cc.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2018-01-12T13:38:48.157Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个简单的获取验证码控件的封装">
+<meta name="twitter:description" content="写在前面在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。 实现效果 实现思路自定义一个UIView，在这个View上添加一个显示进度的ProgressView，和一个显示文字的UILabel。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1777873-110fedabc97ea4c4.gif?imageMogr2/auto-orient/strip">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/12/一个简单的获取验证码控件的封装/"/>
+
+
+
+
+
+  <title>一个简单的获取验证码控件的封装 | 浪漫恋星空的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浪漫恋星空的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">从陌生的闭区间到爱的开区间 流淌的是岁月 不变的是时间 只是有段回忆 会永远被铭记 --[陌生，爱） 陌路伊始 相爱无期</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/一个简单的获取验证码控件的封装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一个简单的获取验证码控件的封装</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。</p>
+<h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h3><p><img src="http://upload-images.jianshu.io/upload_images/1777873-110fedabc97ea4c4.gif?imageMogr2/auto-orient/strip" alt="效果.gif"></p>
+<h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><p>自定义一个UIView，在这个View上添加一个显示进度的ProgressView，和一个显示文字的UILabel。通过NSTimer修改UILabel上的文字，渐变的动画就是简单的UIView动画，通过改变ProgressView的frame来实现。</p>
+<h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><p>创建一个XKCaptchaView继承于UIView，在.h头文件中声明需要的属性和方法。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">XKCaptchaView</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 点击XKCaptchaView触发的回调Block</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span>(^XKCaptchaActionBlock)(XKCaptchaView *view);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">XKCaptchaView</span> : <span class="title">UIView</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 间隔时长（指定一个时长，在这个时长之后控件可以重新点击）</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSTimeInterval</span> reEnableTimeInterval;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 进度视图的背景颜色</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIColor</span> *progressViewBgColor;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化方法</span></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame reEnableTimeInterval:(<span class="built_in">NSTimeInterval</span>)interval actionBlock:(XKCaptchaActionBlock)actionBlock;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开始动画</span></span><br><span class="line">- (<span class="keyword">void</span>)startAnimation;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 回到最初的状态</span></span><br><span class="line">- (<span class="keyword">void</span>)changToNormal;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>实现文件的代码如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"XKCaptchaView.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">XKCaptchaView</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UIView</span> *_reEnableProgressView;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UILabel</span> *_titleLabel;</span><br><span class="line">    </span><br><span class="line">    XKCaptchaActionBlock _actionBlock;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSTimer</span> *_timer;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSInteger</span> _timerInteger;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)dealloc &#123;</span><br><span class="line">    </span><br><span class="line">    [_timer invalidate];</span><br><span class="line">    </span><br><span class="line">    _timer = <span class="literal">nil</span>;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span>.subviews makeObjectsPerformSelector:<span class="keyword">@selector</span>(removeFromSuperview)];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame reEnableTimeInterval:(<span class="built_in">NSTimeInterval</span>)interval actionBlock:(XKCaptchaActionBlock)actionBlock &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame]) &#123;</span><br><span class="line">        </span><br><span class="line">        _reEnableTimeInterval = interval;</span><br><span class="line">        </span><br><span class="line">        _reEnableProgressView = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="keyword">self</span>.bounds];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">self</span>.backgroundColor = [<span class="built_in">UIColor</span> lightGrayColor];</span><br><span class="line">        </span><br><span class="line">        _reEnableProgressView.backgroundColor = [<span class="built_in">UIColor</span> orangeColor];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (actionBlock) &#123;</span><br><span class="line">            _actionBlock = actionBlock;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">UITapGestureRecognizer</span> * tap = [[<span class="built_in">UITapGestureRecognizer</span> alloc] initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(handleTap)];</span><br><span class="line">        </span><br><span class="line">        [<span class="keyword">self</span> addGestureRecognizer:tap];</span><br><span class="line">        </span><br><span class="line">        [<span class="keyword">self</span> addSubview:_reEnableProgressView];</span><br><span class="line">        </span><br><span class="line">        _titleLabel = [[<span class="built_in">UILabel</span> alloc] initWithFrame:<span class="keyword">self</span>.bounds];</span><br><span class="line">        </span><br><span class="line">        _titleLabel.text = <span class="string">@"获取验证码"</span>;</span><br><span class="line">        </span><br><span class="line">        _titleLabel.textAlignment = <span class="built_in">NSTextAlignmentCenter</span>;</span><br><span class="line">        </span><br><span class="line">        _titleLabel.textColor = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">        </span><br><span class="line">        _timerInteger = interval;</span><br><span class="line">        </span><br><span class="line">        [<span class="keyword">self</span> addSubview:_titleLabel];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)handleTap &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (_actionBlock) &#123;</span><br><span class="line">     </span><br><span class="line">        _actionBlock(<span class="keyword">self</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)change &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (_timerInteger == <span class="number">0</span>) &#123;</span><br><span class="line">        </span><br><span class="line">        [_timer invalidate];</span><br><span class="line">        </span><br><span class="line">        _titleLabel.text = <span class="string">@"获取验证码"</span>;</span><br><span class="line">        </span><br><span class="line">        _timerInteger = _reEnableTimeInterval;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    _timerInteger--;</span><br><span class="line">    </span><br><span class="line">    _titleLabel.text = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"获取验证码(%ld)"</span>,(<span class="keyword">long</span>)_timerInteger];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)startAnimation &#123;</span><br><span class="line">    </span><br><span class="line">    _timer = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:<span class="number">1</span> target:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(change) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];</span><br><span class="line">    </span><br><span class="line">    [_timer fire];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.userInteractionEnabled = <span class="literal">NO</span>;</span><br><span class="line">    </span><br><span class="line">    _reEnableProgressView.frame = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, _reEnableProgressView.frame.size.height);</span><br><span class="line">    </span><br><span class="line">    [<span class="built_in">UIView</span> animateWithDuration:_reEnableTimeInterval animations:^&#123;</span><br><span class="line">        </span><br><span class="line">        _reEnableProgressView.frame = <span class="keyword">self</span>.bounds;</span><br><span class="line">        </span><br><span class="line">    &#125; completion:^(<span class="built_in">BOOL</span> finished) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">self</span>.userInteractionEnabled = <span class="literal">YES</span>;</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)changToNormal &#123;</span><br><span class="line">    </span><br><span class="line">    [_timer invalidate];</span><br><span class="line">    </span><br><span class="line">    _timerInteger = _reEnableTimeInterval;</span><br><span class="line">    </span><br><span class="line">    [_reEnableProgressView.layer removeAllAnimations];</span><br><span class="line">    </span><br><span class="line">    _titleLabel.text = <span class="string">@"获取验证码"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setProgressViewBgColor:(<span class="built_in">UIColor</span> *)progressViewBgColor &#123;</span><br><span class="line">    </span><br><span class="line">    _progressViewBgColor = progressViewBgColor;</span><br><span class="line">    </span><br><span class="line">    _reEnableProgressView.backgroundColor = progressViewBgColor;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>平时写代码有一个坏习惯，就是实现文件不喜欢写注释。这里简单解释一下上面的代码，在初始化方法中向<code>XKCaptchaView</code>添加了<code>reEnableProgressView</code>进度View，显示文字的<code>titleLabel</code>，并且初始化了一些默认的配置信息。向<code>XKCaptchaView</code>添加了单击手势，用来接收处理点击事件。最主要的方法就是<code>- (void)startAnimation</code>这个方法，在这个方法中，初始化了定时器，开始动画之后，<code>XKCaptchaView</code>便不再响应用户操作，直到动画完成，或者手动调用<code>- (void)changToNormal</code>方法。设置<code>reEnableProgressView</code>的<code>frame</code>，然后根据<code>reEnableTimeInterval</code>改变其宽度。定时器每秒执行一次<code>- (void)change</code>方法，在这个方法中改变<code>titleLabel</code>上的文字，当<code>timerInteger</code>为0时，停止定时器，还原<code>titleLabel</code>。<code>- (void)changToNormal</code>该方法是用来还原整个控件的状态的，需要手动调用。这个方法存在的意义是，点击控件发起网络请求去获取验证码，验证码获取成功了之后，<code>reEnableProgressView</code>就没有继续做动画的必要了。所以这里提供这样一个方法。<code>- (void)changToNormal</code>里面也都是简单的操作，首先停止定时器，重新将<code>reEnableTimeInterval</code>赋值给<code>timerInteger</code>，移除<code>reEnableProgressView</code>的动画，还原<code>titleLabel</code>。这里不用将<code>XKCaptchaView</code>的<code>userInteractionEnabled</code>设置为<code>YES</code>。因为在移除<code>reEnableProgressView</code>动画的时候，会执行<code>UIView</code>动画的<code>completion</code>回调。最终，我们就实现了这样一个简单的需求。</p>
+<h3 id="简单的使用"><a href="#简单的使用" class="headerlink" title="简单的使用"></a>简单的使用</h3><p>在控制器中简单使用自定义的<code>XKCaptchaView</code>测试一下看看是否满足需求。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"XKCaptchaView.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) XKCaptchaView *captchaView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.captchaView];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (XKCaptchaView *)captchaView &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (!_captchaView) &#123;</span><br><span class="line">        </span><br><span class="line">        _captchaView = [[XKCaptchaView alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">150</span>, <span class="number">30</span>) reEnableTimeInterval:<span class="number">60</span> actionBlock:^(XKCaptchaView *view) &#123;</span><br><span class="line">            </span><br><span class="line">            [view startAnimation];</span><br><span class="line">            </span><br><span class="line">            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(<span class="number">10</span> * <span class="built_in">NSEC_PER_SEC</span>)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line">                </span><br><span class="line">                [[[<span class="built_in">UIAlertView</span> alloc] initWithTitle:<span class="string">@"温馨提示"</span> message:<span class="string">@"验证码获取成功"</span> delegate:<span class="literal">nil</span> cancelButtonTitle:<span class="string">@"我知道了"</span> otherButtonTitles:<span class="literal">nil</span>, <span class="literal">nil</span>] show];</span><br><span class="line">                </span><br><span class="line">                [<span class="keyword">self</span>.captchaView changToNormal];</span><br><span class="line">                </span><br><span class="line">            &#125;);</span><br><span class="line">            </span><br><span class="line">        &#125;];</span><br><span class="line">        </span><br><span class="line">        _captchaView.center = <span class="keyword">self</span>.view.center;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> _captchaView;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>最终的效果如图</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-0af13d1a6df734cc.gif?imageMogr2/auto-orient/strip" alt="最终效果图.gif"></p>
+<p>这就是一个简单获取验证码控件的封装，虽然功能简单，但是该有的都有。全部的代码都已经贴出来了。如果你没有时间阅读源码而你又需要这个小控件的话 <a href="https://github.com/jhchenchong/XKCaptchaView.git" target="_blank" rel="noopener">传送门在这里</a><br>如果你在阅读或者使用的过程中发现错误或者有什么更好的建议，欢迎留言指出。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自定义视图/" rel="tag"># 自定义视图</a>
+          
+            <a href="/tags/验证码/" rel="tag"># 验证码</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/" rel="next" title="基本排序算法的OC实现">
+                <i class="fa fa-chevron-left"></i> 基本排序算法的OC实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/" rel="prev" title="从零开始 一步步将自己的框架导入CocoaPods">
+                从零开始 一步步将自己的框架导入CocoaPods <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg"
+                alt="浪漫恋星空" />
+            
+              <p class="site-author-name" itemprop="name">浪漫恋星空</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心 方得始终 初心易得 始终难守</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jhchenchong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现效果"><span class="nav-number">2.</span> <span class="nav-text">实现效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现思路"><span class="nav-number">3.</span> <span class="nav-text">实现思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现代码"><span class="nav-number">4.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单的使用"><span class="nav-number">5.</span> <span class="nav-text">简单的使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浪漫恋星空</span>
+
+  
+</div>
+
+
+  <div class="powered-by">  个人专属</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">博客 &mdash; 浪漫恋星空</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

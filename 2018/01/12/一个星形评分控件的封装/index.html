@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="自定义视图,评分控件," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。 效果图 实现思路 创建前后两个frame相等的视图 在创建好的视图上循环添加需要个数的">
+<meta name="keywords" content="自定义视图,评分控件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个星形评分控件的封装">
+<meta property="og:url" content="http://yoursite.com/2018/01/12/一个星形评分控件的封装/index.html">
+<meta property="og:site_name" content="浪漫恋星空的博客">
+<meta property="og:description" content="前言很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。 效果图 实现思路 创建前后两个frame相等的视图 在创建好的视图上循环添加需要个数的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-d5bde20cc0f48c48.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2018-01-12T13:42:01.690Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个星形评分控件的封装">
+<meta name="twitter:description" content="前言很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。 效果图 实现思路 创建前后两个frame相等的视图 在创建好的视图上循环添加需要个数的">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1777873-d5bde20cc0f48c48.gif?imageMogr2/auto-orient/strip">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/12/一个星形评分控件的封装/"/>
+
+
+
+
+
+  <title>一个星形评分控件的封装 | 浪漫恋星空的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浪漫恋星空的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">从陌生的闭区间到爱的开区间 流淌的是岁月 不变的是时间 只是有段回忆 会永远被铭记 --[陌生，爱） 陌路伊始 相爱无期</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/一个星形评分控件的封装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一个星形评分控件的封装</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。</p>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="http://upload-images.jianshu.io/upload_images/1777873-d5bde20cc0f48c48.gif?imageMogr2/auto-orient/strip" alt="效果图.gif"></p>
+<h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><ul>
+<li>创建前后两个frame相等的视图</li>
+<li>在创建好的视图上循环添加需要个数的UIImageView，并设置对应的图片。</li>
+<li>根据手指在控件上的位置获取X轴上的偏移量，计算成分数。</li>
+</ul>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>大致的实现思路了解了，接下来要做的就是编码实现。首先创建一个类 <code>XKStarRateView</code> 继承自 <code>UIView</code>，在 <code>XKStarRateView.h</code> 中，声明一些初始的构造方法。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, XKStarRateStyle) &#123;</span><br><span class="line">    </span><br><span class="line">    XKWholeStarStyle = <span class="number">0</span>,</span><br><span class="line">    </span><br><span class="line">    XKHalfStarStyle = <span class="number">1</span>,</span><br><span class="line">    </span><br><span class="line">    XKIncompleteStarStyle = <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span>(^XKStarRateSelectedBlock)(<span class="built_in">CGFloat</span> score);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">XKStarRateView</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">XKStarRateViewDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)starRateView:(XKStarRateView *)starRateView currentScore:(<span class="built_in">CGFloat</span>)currentScore;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">XKStarRateView</span> : <span class="title">UIView</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/// 是否显示动画(默认为NO)</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">BOOL</span> isAnimation;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 评分样式 (XKWholeStarStyle 整星评论 XKHalfStarStyle 半星评论 XKIncompleteStarStyle 不完整星评论)</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) XKStarRateStyle rateStyle;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 代理</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) <span class="keyword">id</span>&lt;XKStarRateViewDelegate&gt; delegate;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 初始化方法</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param frame 控件frame</span></span><br><span class="line"><span class="comment"> @param numberOfStars 星星数量</span></span><br><span class="line"><span class="comment"> @param rateStyle 评分样式 (XKWholeStarStyle 整星评论 XKHalfStarStyle 半星评论 XKIncompleteStarStyle 不完整星评论)</span></span><br><span class="line"><span class="comment"> @param isAnimation 是否动画</span></span><br><span class="line"><span class="comment"> @param delegate 代理</span></span><br><span class="line"><span class="comment"> @return XKStarRateView</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame</span><br><span class="line">                numberOfStars:(<span class="built_in">NSInteger</span>)numberOfStars</span><br><span class="line">                    rateStyle:(XKStarRateStyle)rateStyle</span><br><span class="line">                  isAnination:(<span class="built_in">BOOL</span>)isAnimation</span><br><span class="line">                     delegate:(<span class="keyword">id</span>&lt;XKStarRateViewDelegate&gt;)delegate;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 初始化方法</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param frame 控件frame</span></span><br><span class="line"><span class="comment"> @param starRateSelectedBlock 点击星星的回调</span></span><br><span class="line"><span class="comment"> @return XKStarRateView</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame</span><br><span class="line">        starRateSelectedBlock:(XKStarRateSelectedBlock)starRateSelectedBlock;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 初始化方法</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param frame 控件frame</span></span><br><span class="line"><span class="comment"> @param numberOfStars 星星数量</span></span><br><span class="line"><span class="comment"> @param rateStyle 评分样式 (XKWholeStarStyle 整星评论 XKHalfStarStyle 半星评论 XKIncompleteStarStyle 不完整星评论)</span></span><br><span class="line"><span class="comment"> @param isAnimation 是否动画</span></span><br><span class="line"><span class="comment"> @param starRateSelectedBlock 点击星星的回调</span></span><br><span class="line"><span class="comment"> @return XKStarRateView</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame</span><br><span class="line">                numberOfStars:(<span class="built_in">NSInteger</span>)numberOfStars</span><br><span class="line">                    rateStyle:(XKStarRateStyle)rateStyle</span><br><span class="line">                  isAnination:(<span class="built_in">BOOL</span>)isAnimation</span><br><span class="line">        starRateSelectedBlock:(XKStarRateSelectedBlock)starRateSelectedBlock;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>这里提供了三种样式供选择，整星，半星，任意星。以及代理和Block两种方式获得当前控件显示所对应的分数。还提供了一个可选动画的属性。</p>
+<p>在实现的过程中，首先定义一些必要的属性参数。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span>(^completeBlock)(<span class="built_in">CGFloat</span> currentScore);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">XKStarRateView</span> ()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIView</span> *foregroundStarView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIView</span> *backgroundStarView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSInteger</span> numberOfStars;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">CGFloat</span> currentScore;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) completeBlock complete;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>接下来声明一个方法创建需要的视图</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 根据图片名称创建StarView</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param imageName 图片名称</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UIView</span> *)createStarViewWithImageName:(<span class="built_in">NSString</span> *)imageName &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UIView</span> *view = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="keyword">self</span>.bounds];</span><br><span class="line">    </span><br><span class="line">    view.clipsToBounds = <span class="literal">YES</span>;</span><br><span class="line">    </span><br><span class="line">    view.backgroundColor = [<span class="built_in">UIColor</span> clearColor];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i &lt; <span class="keyword">self</span>.numberOfStars; i ++) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithImage:[<span class="built_in">UIImage</span> imageNamed:imageName]];</span><br><span class="line">        </span><br><span class="line">        imageView.frame = <span class="built_in">CGRectMake</span>(i * <span class="keyword">self</span>.bounds.size.width / <span class="keyword">self</span>.numberOfStars, <span class="number">0</span>, <span class="keyword">self</span>.bounds.size.width / <span class="keyword">self</span>.numberOfStars, <span class="keyword">self</span>.bounds.size.height);</span><br><span class="line">        </span><br><span class="line">        imageView.contentMode = <span class="built_in">UIViewContentModeScaleAspectFit</span>;</span><br><span class="line">        </span><br><span class="line">        [view addSubview:imageView];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>初始化视图</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 初始化评论视图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)initStarView &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.foregroundStarView = [<span class="keyword">self</span> createStarViewWithImageName:NormalImageName];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.backgroundStarView = [<span class="keyword">self</span> createStarViewWithImageName:SelectedImageName];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.foregroundStarView.frame = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="keyword">self</span>.bounds.size.width * _currentScore / <span class="keyword">self</span>.numberOfStars, <span class="keyword">self</span>.bounds.size.height);</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span> addSubview:<span class="keyword">self</span>.backgroundStarView];</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span> addSubview:<span class="keyword">self</span>.foregroundStarView];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>视图什么的都创建好了，接着处理事件，这里的点击事件和滑动事件我并没有去给视图添加手势，而是直接放到视图的Touch事件中去处理的。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark -- touch事件处理</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event &#123;</span><br><span class="line">    </span><br><span class="line">    [event touchesForView:<span class="keyword">self</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSSet</span> *allTouches = [event allTouches];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UITouch</span> *touch = [allTouches anyObject];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGPoint</span> point = [touch locationInView:[touch view]];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGFloat</span> offset = point.x;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGFloat</span> realStarScore = offset / (<span class="keyword">self</span>.bounds.size.width / <span class="keyword">self</span>.numberOfStars);</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span> handleRealStarScore:realStarScore];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)touchesMoved:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event &#123;</span><br><span class="line">    </span><br><span class="line">    [event touchesForView:<span class="keyword">self</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSSet</span> *allTouches = [event allTouches];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UITouch</span> *touch = [allTouches anyObject];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGPoint</span> point = [touch locationInView:[touch view]];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGFloat</span> offset = point.x;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGFloat</span> realStarScore = offset / (<span class="keyword">self</span>.bounds.size.width / <span class="keyword">self</span>.numberOfStars);</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span> handleRealStarScore:realStarScore];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据偏移量计算最终的评分，这里根据选择不同的样式计算方法有不一样的地方。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 根据偏移量计算最终的评分</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param realStarScore 真实的偏移量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)handleRealStarScore:(<span class="built_in">CGFloat</span>)realStarScore &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">switch</span> (_rateStyle) &#123;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> XKWholeStarStyle:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">self</span>.currentScore = ceilf(realStarScore);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> XKHalfStarStyle:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">self</span>.currentScore = roundf(realStarScore) &gt; realStarScore ? ceilf(realStarScore) : (ceilf(realStarScore) - <span class="number">0.5</span>);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> XKIncompleteStarStyle:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">self</span>.currentScore = realStarScore;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里主要的就是两个C语言函数的使用。</p>
+<ul>
+<li><code>round</code>：如果参数是小数，则求本身的四舍五入。</li>
+<li><code>ceilf</code>：如果参数是小数，则向上取整。</li>
+</ul>
+<p>拿到当前的偏移量计算出来的分数之后，在setter方法中将这个值传出去。并且刷新视图。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setCurrentScore:(<span class="built_in">CGFloat</span>)currentScore &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (_currentScore == currentScore) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (currentScore &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        </span><br><span class="line">        _currentScore = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (currentScore &gt; _numberOfStars) &#123;</span><br><span class="line">        </span><br><span class="line">        _currentScore = _numberOfStars;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        </span><br><span class="line">        _currentScore = currentScore;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.delegate &amp;&amp; [<span class="keyword">self</span>.delegate respondsToSelector:<span class="keyword">@selector</span>(starRateView:currentScore:)]) &#123;</span><br><span class="line">        </span><br><span class="line">        [<span class="keyword">self</span>.delegate starRateView:<span class="keyword">self</span> currentScore:_currentScore];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.complete) &#123;</span><br><span class="line">        </span><br><span class="line">        _complete(_currentScore);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span> setNeedsLayout];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <code>- (void)layoutSubviews</code> 方法中，去改变 <code>foregroundStarView</code> 的frame即可。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)layoutSubviews &#123;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">super</span> layoutSubviews];</span><br><span class="line">    </span><br><span class="line">    __<span class="keyword">weak</span> XKStarRateView *weakSelf = <span class="keyword">self</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGFloat</span> animationTimeInterval = <span class="keyword">self</span>.isAnimation ? <span class="number">0.2</span> : <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    [<span class="built_in">UIView</span> animateWithDuration:animationTimeInterval animations:^&#123;</span><br><span class="line">        </span><br><span class="line">        weakSelf.foregroundStarView.frame = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, weakSelf.bounds.size.width * weakSelf.currentScore / <span class="keyword">self</span>.numberOfStars, weakSelf.bounds.size.height);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到这里，基本的功能就做完了，构造方法中只需要初始化部分参数就好了。运行程序，发现有一个问题，就是当你选择了一个分数之后，在 <code>XKWholeStarStyle</code> 和 <code>XKHalfStarStyle</code> 两种样式中，始终没有办法将评分设置为0，问题出在 <code>- (void)handleRealStarScore:(CGFloat)realStarScore</code> 这个方法中使用到的两个C语言函数。这里最后也没有去在想其他的方式来实现。在这个方法中手动的设置了一下，当 <code>realStarScore</code>比0.5还小的时候，就直接让分数为0。简单粗暴。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 根据偏移量计算最终的评分</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param realStarScore 真实的偏移量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)handleRealStarScore:(<span class="built_in">CGFloat</span>)realStarScore &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">switch</span> (_rateStyle) &#123;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> XKWholeStarStyle:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (realStarScore &lt; <span class="number">0.5</span>) &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">self</span>.currentScore = <span class="number">0</span>;</span><br><span class="line">                </span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">self</span>.currentScore = ceilf(realStarScore);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> XKHalfStarStyle:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (realStarScore &lt; <span class="number">0.4</span>) &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">self</span>.currentScore = <span class="number">0</span>;</span><br><span class="line">                </span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">self</span>.currentScore = roundf(realStarScore) &gt; realStarScore ? ceilf(realStarScore) : (ceilf(realStarScore) - <span class="number">0.5</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> XKIncompleteStarStyle:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">self</span>.currentScore = realStarScore;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，整个实现文件的代码如下</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"XKStarRateView.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#define NormalImageName @<span class="meta-string">"b27_icon_star_yellow"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#define SelectedImageName @<span class="meta-string">"b27_icon_star_gray"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span>(^completeBlock)(<span class="built_in">CGFloat</span> currentScore);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">XKStarRateView</span> ()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIView</span> *foregroundStarView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIView</span> *backgroundStarView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSInteger</span> numberOfStars;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">CGFloat</span> currentScore;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) completeBlock complete;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">XKStarRateView</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark -- 构造方法</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame]) &#123;</span><br><span class="line">        </span><br><span class="line">        _numberOfStars = <span class="number">5</span>;</span><br><span class="line">        </span><br><span class="line">        _rateStyle = XKWholeStarStyle;</span><br><span class="line">        </span><br><span class="line">        [<span class="keyword">self</span> initStarView];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame</span><br><span class="line">                numberOfStars:(<span class="built_in">NSInteger</span>)numberOfStars</span><br><span class="line">                    rateStyle:(XKStarRateStyle)rateStyle</span><br><span class="line">                  isAnination:(<span class="built_in">BOOL</span>)isAnimation</span><br><span class="line">                     delegate:(<span class="keyword">id</span>&lt;XKStarRateViewDelegate&gt;)delegate &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame]) &#123;</span><br><span class="line">        </span><br><span class="line">        _numberOfStars = numberOfStars;</span><br><span class="line">        </span><br><span class="line">        _rateStyle = rateStyle;</span><br><span class="line">        </span><br><span class="line">        _isAnimation = isAnimation;</span><br><span class="line">        </span><br><span class="line">        _delegate = delegate;</span><br><span class="line">        </span><br><span class="line">        [<span class="keyword">self</span> initStarView];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame</span><br><span class="line">        starRateSelectedBlock:(XKStarRateSelectedBlock)starRateSelectedBlock&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame]) &#123;</span><br><span class="line">        </span><br><span class="line">        _numberOfStars = <span class="number">5</span>;</span><br><span class="line">        </span><br><span class="line">        _rateStyle = XKWholeStarStyle;</span><br><span class="line">        </span><br><span class="line">        _complete = ^(<span class="built_in">CGFloat</span> currentScore)&#123;</span><br><span class="line">            </span><br><span class="line">            starRateSelectedBlock(currentScore);</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        [<span class="keyword">self</span> initStarView];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame</span><br><span class="line">                numberOfStars:(<span class="built_in">NSInteger</span>)numberOfStars</span><br><span class="line">                    rateStyle:(XKStarRateStyle)rateStyle</span><br><span class="line">                  isAnination:(<span class="built_in">BOOL</span>)isAnimation</span><br><span class="line">        starRateSelectedBlock:(XKStarRateSelectedBlock)starRateSelectedBlock &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame]) &#123;</span><br><span class="line">        </span><br><span class="line">        _numberOfStars = numberOfStars;</span><br><span class="line">        </span><br><span class="line">        _rateStyle = rateStyle;</span><br><span class="line">        </span><br><span class="line">        _isAnimation = isAnimation;</span><br><span class="line">        </span><br><span class="line">        _complete = ^(<span class="built_in">CGFloat</span> currentScore) &#123;</span><br><span class="line">            </span><br><span class="line">            starRateSelectedBlock(currentScore);</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        [<span class="keyword">self</span> initStarView];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark -- 私有方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 初始化评论视图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)initStarView &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.foregroundStarView = [<span class="keyword">self</span> createStarViewWithImageName:NormalImageName];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.backgroundStarView = [<span class="keyword">self</span> createStarViewWithImageName:SelectedImageName];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.foregroundStarView.frame = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="keyword">self</span>.bounds.size.width * _currentScore / <span class="keyword">self</span>.numberOfStars, <span class="keyword">self</span>.bounds.size.height);</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span> addSubview:<span class="keyword">self</span>.backgroundStarView];</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span> addSubview:<span class="keyword">self</span>.foregroundStarView];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 根据图片名称创建StarView</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param imageName 图片名称</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UIView</span> *)createStarViewWithImageName:(<span class="built_in">NSString</span> *)imageName &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UIView</span> *view = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="keyword">self</span>.bounds];</span><br><span class="line">    </span><br><span class="line">    view.clipsToBounds = <span class="literal">YES</span>;</span><br><span class="line">    </span><br><span class="line">    view.backgroundColor = [<span class="built_in">UIColor</span> clearColor];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i &lt; <span class="keyword">self</span>.numberOfStars; i ++) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithImage:[<span class="built_in">UIImage</span> imageNamed:imageName]];</span><br><span class="line">        </span><br><span class="line">        imageView.frame = <span class="built_in">CGRectMake</span>(i * <span class="keyword">self</span>.bounds.size.width / <span class="keyword">self</span>.numberOfStars, <span class="number">0</span>, <span class="keyword">self</span>.bounds.size.width / <span class="keyword">self</span>.numberOfStars, <span class="keyword">self</span>.bounds.size.height);</span><br><span class="line">        </span><br><span class="line">        imageView.contentMode = <span class="built_in">UIViewContentModeScaleAspectFit</span>;</span><br><span class="line">        </span><br><span class="line">        [view addSubview:imageView];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 根据偏移量计算最终的评分</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param realStarScore 真实的偏移量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)handleRealStarScore:(<span class="built_in">CGFloat</span>)realStarScore &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">switch</span> (_rateStyle) &#123;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> XKWholeStarStyle:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (realStarScore &lt; <span class="number">0.5</span>) &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">self</span>.currentScore = <span class="number">0</span>;</span><br><span class="line">                </span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">self</span>.currentScore = ceilf(realStarScore);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> XKHalfStarStyle:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (realStarScore &lt; <span class="number">0.4</span>) &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">self</span>.currentScore = <span class="number">0</span>;</span><br><span class="line">                </span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">self</span>.currentScore = roundf(realStarScore) &gt; realStarScore ? ceilf(realStarScore) : (ceilf(realStarScore) - <span class="number">0.5</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> XKIncompleteStarStyle:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">self</span>.currentScore = realStarScore;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark -- touch事件处理</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event &#123;</span><br><span class="line">    </span><br><span class="line">    [event touchesForView:<span class="keyword">self</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSSet</span> *allTouches = [event allTouches];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UITouch</span> *touch = [allTouches anyObject];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGPoint</span> point = [touch locationInView:[touch view]];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGFloat</span> offset = point.x;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGFloat</span> realStarScore = offset / (<span class="keyword">self</span>.bounds.size.width / <span class="keyword">self</span>.numberOfStars);</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span> handleRealStarScore:realStarScore];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)touchesMoved:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event &#123;</span><br><span class="line">    </span><br><span class="line">    [event touchesForView:<span class="keyword">self</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSSet</span> *allTouches = [event allTouches];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UITouch</span> *touch = [allTouches anyObject];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGPoint</span> point = [touch locationInView:[touch view]];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGFloat</span> offset = point.x;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGFloat</span> realStarScore = offset / (<span class="keyword">self</span>.bounds.size.width / <span class="keyword">self</span>.numberOfStars);</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span> handleRealStarScore:realStarScore];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)layoutSubviews &#123;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">super</span> layoutSubviews];</span><br><span class="line">    </span><br><span class="line">    __<span class="keyword">weak</span> XKStarRateView *weakSelf = <span class="keyword">self</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGFloat</span> animationTimeInterval = <span class="keyword">self</span>.isAnimation ? <span class="number">0.2</span> : <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    [<span class="built_in">UIView</span> animateWithDuration:animationTimeInterval animations:^&#123;</span><br><span class="line">        </span><br><span class="line">        weakSelf.foregroundStarView.frame = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, weakSelf.bounds.size.width * weakSelf.currentScore/<span class="keyword">self</span>.numberOfStars, weakSelf.bounds.size.height);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark -- setter方法</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setCurrentScore:(<span class="built_in">CGFloat</span>)currentScore &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (_currentScore == currentScore) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (currentScore &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        </span><br><span class="line">        _currentScore = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (currentScore &gt; _numberOfStars) &#123;</span><br><span class="line">        </span><br><span class="line">        _currentScore = _numberOfStars;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        </span><br><span class="line">        _currentScore = currentScore;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.delegate &amp;&amp; [<span class="keyword">self</span>.delegate respondsToSelector:<span class="keyword">@selector</span>(starRateView:currentScore:)]) &#123;</span><br><span class="line">        </span><br><span class="line">        [<span class="keyword">self</span>.delegate starRateView:<span class="keyword">self</span> currentScore:_currentScore];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.complete) &#123;</span><br><span class="line">        </span><br><span class="line">        _complete(_currentScore);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span> setNeedsLayout];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>全部的代码都在这里了。同样的，需要的朋友可以<a href="https://github.com/jhchenchong/XKStarRateView.git" target="_blank" rel="noopener">点击这里</a>下载Demo工程。如果在使用过程中发现问题欢迎留言提出。谢谢！</p>
+<h3 id="特别感谢"><a href="#特别感谢" class="headerlink" title="特别感谢"></a>特别感谢</h3><p><a href="https://github.com/huahua0809/XHStarRateView" target="_blank" rel="noopener">在代码封装的过程中有参考这里的代码</a> 在此感谢。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自定义视图/" rel="tag"># 自定义视图</a>
+          
+            <a href="/tags/评分控件/" rel="tag"># 评分控件</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/12/Safe-Area-Layout-Guide/" rel="next" title="Safe Area Layout Guide before iOS 9.0">
+                <i class="fa fa-chevron-left"></i> Safe Area Layout Guide before iOS 9.0
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/12/星空回忆里的那些点滴/" rel="prev" title="星空回忆里的那些点滴">
+                星空回忆里的那些点滴 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg"
+                alt="浪漫恋星空" />
+            
+              <p class="site-author-name" itemprop="name">浪漫恋星空</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心 方得始终 初心易得 始终难守</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jhchenchong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果图"><span class="nav-number">2.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现思路"><span class="nav-number">3.</span> <span class="nav-text">实现思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">4.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特别感谢"><span class="nav-number">5.</span> <span class="nav-text">特别感谢</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浪漫恋星空</span>
+
+  
+</div>
+
+
+  <div class="powered-by">  个人专属</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">博客 &mdash; 浪漫恋星空</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

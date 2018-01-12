@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="iOS,RAC,网络请求," />
+  <meta name="keywords" content="bug,WKWebView," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="写在前面RAC不是什么新鲜的概念了，这段时间闲来无事，就把自己项目中使用到的网络请求尝试用RAC封装了一下。 封装网络请求RAC的核心是信号，在封装网络请求的过程中，把每一个网络请求封装成一个信号。 123+ (RACSignal *)GET:(NSString *)url parameters:(id)parameters isCache:(BOOL)isCache;+ (RACSignal *">
-<meta name="keywords" content="iOS,RAC,网络请求">
+<meta name="description" content="前言项目接近尾声，昨天在测试的时候发现了一个闪退的问题。测试的设备为iPhone5s，系统是iOS 8.3，其他的测试设备都不会崩溃。临近下班，就没有多想，感觉就是一个谜之bug，从Bugly反馈的日志看，也只能看到是因为内存释放出栈异常。一早上班就看了一下这个闪退的问题。记录一下两个小时的爬坑记。 Bug描述设备：iPhone5s，系统：iOS 8.3，在进入一个WKWebView加载的本地ht">
+<meta name="keywords" content="bug,WKWebView">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于RAC封装带缓存的网络请求">
-<meta property="og:url" content="http://yoursite.com/2018/01/12/基于RAC封装带缓存的网络请求/index.html">
+<meta property="og:title" content="WKWebView在iOS8上闪退异常">
+<meta property="og:url" content="http://yoursite.com/2018/01/12/WKWebView在iOS8上的闪退异常/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
-<meta property="og:description" content="写在前面RAC不是什么新鲜的概念了，这段时间闲来无事，就把自己项目中使用到的网络请求尝试用RAC封装了一下。 封装网络请求RAC的核心是信号，在封装网络请求的过程中，把每一个网络请求封装成一个信号。 123+ (RACSignal *)GET:(NSString *)url parameters:(id)parameters isCache:(BOOL)isCache;+ (RACSignal *">
+<meta property="og:description" content="前言项目接近尾声，昨天在测试的时候发现了一个闪退的问题。测试的设备为iPhone5s，系统是iOS 8.3，其他的测试设备都不会崩溃。临近下班，就没有多想，感觉就是一个谜之bug，从Bugly反馈的日志看，也只能看到是因为内存释放出栈异常。一早上班就看了一下这个闪退的问题。记录一下两个小时的爬坑记。 Bug描述设备：iPhone5s，系统：iOS 8.3，在进入一个WKWebView加载的本地ht">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-12T12:58:10.071Z">
+<meta property="og:updated_time" content="2018-01-12T13:56:29.879Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于RAC封装带缓存的网络请求">
-<meta name="twitter:description" content="写在前面RAC不是什么新鲜的概念了，这段时间闲来无事，就把自己项目中使用到的网络请求尝试用RAC封装了一下。 封装网络请求RAC的核心是信号，在封装网络请求的过程中，把每一个网络请求封装成一个信号。 123+ (RACSignal *)GET:(NSString *)url parameters:(id)parameters isCache:(BOOL)isCache;+ (RACSignal *">
+<meta name="twitter:title" content="WKWebView在iOS8上闪退异常">
+<meta name="twitter:description" content="前言项目接近尾声，昨天在测试的时候发现了一个闪退的问题。测试的设备为iPhone5s，系统是iOS 8.3，其他的测试设备都不会崩溃。临近下班，就没有多想，感觉就是一个谜之bug，从Bugly反馈的日志看，也只能看到是因为内存释放出栈异常。一早上班就看了一下这个闪退的问题。记录一下两个小时的爬坑记。 Bug描述设备：iPhone5s，系统：iOS 8.3，在进入一个WKWebView加载的本地ht">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/12/基于RAC封装带缓存的网络请求/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/12/WKWebView在iOS8上的闪退异常/"/>
 
 
 
 
 
-  <title>基于RAC封装带缓存的网络请求 | 浪漫恋星空的博客</title>
+  <title>WKWebView在iOS8上闪退异常 | 浪漫恋星空的博客</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/基于RAC封装带缓存的网络请求/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/WKWebView在iOS8上的闪退异常/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">基于RAC封装带缓存的网络请求</h1>
+          <h1 class="post-title" itemprop="name headline">WKWebView在iOS8上闪退异常</h1>
         
 
         <div class="post-meta">
@@ -322,16 +322,9 @@
       
 
       
-        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>RAC不是什么新鲜的概念了，这段时间闲来无事，就把自己项目中使用到的网络请求尝试用RAC封装了一下。</p>
-<h3 id="封装网络请求"><a href="#封装网络请求" class="headerlink" title="封装网络请求"></a>封装网络请求</h3><p>RAC的核心是信号，在封装网络请求的过程中，把每一个网络请求封装成一个信号。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+ (RACSignal *)GET:(<span class="built_in">NSString</span> *)url parameters:(<span class="keyword">id</span>)parameters isCache:(<span class="built_in">BOOL</span>)isCache;</span><br><span class="line"></span><br><span class="line">+ (RACSignal *)POST:(<span class="built_in">NSString</span> *)url parameters:(<span class="keyword">id</span>)parameters isCache:(<span class="built_in">BOOL</span>)isCache;</span><br></pre></td></tr></table></figure>
-<p>项目中常用的就是这两个网络请求方法，这两个方法的实现也很简单。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">+ (RACSignal *)GET:(<span class="built_in">NSString</span> *)url parameters:(<span class="keyword">id</span>)parameters isCache:(<span class="built_in">BOOL</span>)isCache &#123;</span><br><span class="line">    <span class="comment">/// 创建信号</span></span><br><span class="line">    RACSignal *signal = [RACSignal createSignal:^RACDisposable * _Nullable(<span class="keyword">id</span>&lt;RACSubscriber&gt;  _Nonnull subscriber) &#123;</span><br><span class="line">        <span class="comment">/// 读缓存的数据</span></span><br><span class="line">        isCache ? [subscriber sendNext:[[XKCache sharedInstance] httpCacheForURL:url parameters:parameters]] : <span class="literal">nil</span>;</span><br><span class="line">        <span class="comment">/// 基于AFNetworking发起网络请求</span></span><br><span class="line">        <span class="built_in">NSURLSessionDataTask</span> *task = [_sessionManager GET:url parameters:parameters progress:<span class="literal">nil</span> success:^(<span class="built_in">NSURLSessionDataTask</span> * _Nonnull task, <span class="keyword">id</span>  _Nullable responseObject) &#123;</span><br><span class="line">            <span class="comment">/// 请求成功</span></span><br><span class="line">            [subscriber sendNext:responseObject];</span><br><span class="line">            </span><br><span class="line">            [subscriber sendCompleted];</span><br><span class="line">            <span class="comment">/// 记录缓存数据</span></span><br><span class="line">            isCache ? [[XKCache sharedInstance] setHttpCache:responseObject URL:url parameters:parameters] : <span class="literal">nil</span>;</span><br><span class="line">            </span><br><span class="line">        &#125; failure:^(<span class="built_in">NSURLSessionDataTask</span> * _Nullable task, <span class="built_in">NSError</span> * _Nonnull error) &#123;</span><br><span class="line">           </span><br><span class="line">            [subscriber sendError:error];</span><br><span class="line">        &#125;];</span><br><span class="line">        <span class="comment">/// 当信号被销毁的时候 取消网络请求</span></span><br><span class="line">        <span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</span><br><span class="line">            </span><br><span class="line">            [task cancel];</span><br><span class="line">            </span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> signal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>大致的思路就是样的，网络层的封装思路参照的是<a href="https://github.com/jkpang/PPNetworkHelper" target="_blank" rel="noopener">PPNetworkHelper</a>。当然，你也可以<a href="https://github.com/jhchenchong/XKNetworkingManager" target="_blank" rel="noopener">点击这里下载Demo工程</a>，查看具体的封装细节。</p>
-<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p>在需要做网络请求的地方</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">RACDisposable *disposable = [[XKNetworkingManager GET:<span class="string">@""</span> parameters:<span class="literal">nil</span> isCache:<span class="literal">YES</span>] subscribeNext:^(<span class="keyword">id</span>  _Nullable x) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 网络请求成功  如果isCache为YES 这个block会走两次 第一次回来的是缓存数据 第二次是请求成功的数据。</span></span><br><span class="line">        </span><br><span class="line">    &#125; error:^(<span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 出错</span></span><br><span class="line">        </span><br><span class="line">    &#125; completed:^&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 信号完成 执行完这个之后信号会销毁</span></span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
-<p>如果想要取消这个网络请求，调用<code>[disposable dispose]</code>。这里有点需要注意的是，调用<code>[task cancel]</code>是会走AFNetworking失败的回调的。但是，在外界是收不到取消网络请求的这个失败的。因为在外界取消这个网络请求的时候是销毁的信号。信号销毁了就不会再继续发送了，所以也订阅不到了。这里不知道有没有更好的处理方式。</p>
-<h3 id="特别感谢"><a href="#特别感谢" class="headerlink" title="特别感谢"></a>特别感谢</h3><p><a href="https://github.com/jkpang/PPNetworkHelper" target="_blank" rel="noopener">PPNetworkHelper</a></p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>项目接近尾声，昨天在测试的时候发现了一个闪退的问题。测试的设备为iPhone5s，系统是iOS 8.3，其他的测试设备都不会崩溃。临近下班，就没有多想，感觉就是一个谜之bug，从Bugly反馈的日志看，也只能看到是因为内存释放出栈异常。一早上班就看了一下这个闪退的问题。记录一下两个小时的爬坑记。</p>
+<h3 id="Bug描述"><a href="#Bug描述" class="headerlink" title="Bug描述"></a>Bug描述</h3><p>设备：iPhone5s，系统：iOS 8.3，在进入一个WKWebView加载的本地html标签的页面，退出该页面必定闪退。而且这个问题只会出现在iOS 10以下的系统。</p>
+<h3 id="为爱Debug"><a href="#为爱Debug" class="headerlink" title="为爱Debug"></a>为爱Debug</h3><p>因为知道是内存释放的问题，所以从<code>dealloc</code>方法入手，发现程序正常的走了<code>dealloc</code>方法，然后就崩溃了。因为这是一个很简单的页面，整个页面就三个控件，WKWebView和两个UIButton，两个Button是根据WKWebView的滚动与否决定显不显示。然后发现只要这个页面有WKWebView就会崩溃。通过分析发现，是因为设置了WKWebView.scrollView.delegate，而scrollView在WKWebView是strong强引用的，而在这个页面监听了scrollView的delegate。解决方法就是在<code>dealloc</code>方法中将delegate置空。<code>WKWebView.scrollView.delegate = nil</code>。</p>
 
       
     </div>
@@ -349,11 +342,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
+            <a href="/tags/bug/" rel="tag"># bug</a>
           
-            <a href="/tags/RAC/" rel="tag"># RAC</a>
-          
-            <a href="/tags/网络请求/" rel="tag"># 网络请求</a>
+            <a href="/tags/WKWebView/" rel="tag"># WKWebView</a>
           
         </div>
       
@@ -366,8 +357,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/12/带PlaceHolder的UITextView/" rel="next" title="带PlaceHolder的UITextView">
-                <i class="fa fa-chevron-left"></i> 带PlaceHolder的UITextView
+              <a href="/2018/01/12/UITableViewCell嵌套UIWebView高度自适应，设置字号，拦截图片点击事件。/" rel="next" title="UITableViewCell嵌套UIWebView高度自适应 设置字号 拦截图片点击事件">
+                <i class="fa fa-chevron-left"></i> UITableViewCell嵌套UIWebView高度自适应 设置字号 拦截图片点击事件
               </a>
             
           </div>
@@ -376,8 +367,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/" rel="prev" title="基本排序算法的OC实现">
-                基本排序算法的OC实现 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/12/OC实现有趣的过山车动画/" rel="prev" title="有趣的过山车动画">
+                有趣的过山车动画 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -524,7 +515,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装网络请求"><span class="nav-number">2.</span> <span class="nav-text">封装网络请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用"><span class="nav-number">3.</span> <span class="nav-text">如何使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特别感谢"><span class="nav-number">4.</span> <span class="nav-text">特别感谢</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bug描述"><span class="nav-number">2.</span> <span class="nav-text">Bug描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为爱Debug"><span class="nav-number">3.</span> <span class="nav-text">为爱Debug</span></a></li></ol></div>
             
 
           </div>
