@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Gradle构建SpringMVC框架实现App请求接口最近这段时间忙着在找工作，面试不是很多。闲着没什么事干就想着把积累的一点后台的知识理一理，虽然不一定非得做这方面的工作，但是以后的工作中，遇到一些问题可以快速的定位到。接触后台的时间很短，在上一家公司的时候也做过一些给App写接口的工作。后台那边的框架也很多都不懂，就是简单的依葫芦画瓢。遇到问题也有后台小哥帮忙解决。接下来，我就用我了解的一点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gradle构建SpringMVC框架实现App请求接口">
+<meta property="og:url" content="http://yoursite.com/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/index.html">
+<meta property="og:site_name" content="浪漫恋星空的博客">
+<meta property="og:description" content="Gradle构建SpringMVC框架实现App请求接口最近这段时间忙着在找工作，面试不是很多。闲着没什么事干就想着把积累的一点后台的知识理一理，虽然不一定非得做这方面的工作，但是以后的工作中，遇到一些问题可以快速的定位到。接触后台的时间很短，在上一家公司的时候也做过一些给App写接口的工作。后台那边的框架也很多都不懂，就是简单的依葫芦画瓢。遇到问题也有后台小哥帮忙解决。接下来，我就用我了解的一点">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-5c90a06fa77f48fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-df8de46bf6625cde.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-a1cc7e39b565b323.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-9ae70d4b919fef8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-7fc7ae1a2476d3e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-193c1b96bc78b5ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-3021f4ca55add446.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-2c01b3975be889c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-725fb8c7c1a26f7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-bce4c0adb4573ed0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-e8ab7df245eb9663.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-b669d131c9da9a3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-f176b304ac06cc17.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-ff51e71b64f9104b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-8fb192fe6705aa62.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-feded17b71df715a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-bc3e1945a367a80c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-01-12T09:43:03.721Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gradle构建SpringMVC框架实现App请求接口">
+<meta name="twitter:description" content="Gradle构建SpringMVC框架实现App请求接口最近这段时间忙着在找工作，面试不是很多。闲着没什么事干就想着把积累的一点后台的知识理一理，虽然不一定非得做这方面的工作，但是以后的工作中，遇到一些问题可以快速的定位到。接触后台的时间很短，在上一家公司的时候也做过一些给App写接口的工作。后台那边的框架也很多都不懂，就是简单的依葫芦画瓢。遇到问题也有后台小哥帮忙解决。接下来，我就用我了解的一点">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1777873-5c90a06fa77f48fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/"/>
+
+
+
+
+
+  <title>Gradle构建SpringMVC框架实现App请求接口 | 浪漫恋星空的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浪漫恋星空的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">这是一个假装文艺的程序猿</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Gradle构建SpringMVC框架实现App请求接口</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Gradle构建SpringMVC框架实现App请求接口"><a href="#Gradle构建SpringMVC框架实现App请求接口" class="headerlink" title="Gradle构建SpringMVC框架实现App请求接口"></a>Gradle构建SpringMVC框架实现App请求接口</h3><p>最近这段时间忙着在找工作，面试不是很多。闲着没什么事干就想着把积累的一点后台的知识理一理，虽然不一定非得做这方面的工作，但是以后的工作中，遇到一些问题可以快速的定位到。接触后台的时间很短，在上一家公司的时候也做过一些给App写接口的工作。后台那边的框架也很多都不懂，就是简单的依葫芦画瓢。遇到问题也有后台小哥帮忙解决。接下来，我就用我了解的一点后台知识，实现一个接口供App调用。</p>
+<h3 id="环境描述"><a href="#环境描述" class="headerlink" title="环境描述"></a>环境描述</h3><ul>
+<li><p>操作系统:MacOS</p>
+</li>
+<li><p>编译器:Intellij IDEA 2016</p>
+</li>
+<li><p>Java运行环境，Tomcat</p>
+</li>
+<li><p>依赖管理工具：Gradle</p>
+</li>
+<li><p>基础框架：SpringMVC</p>
+</li>
+</ul>
+<h3 id="Gradle构建springMVC框架"><a href="#Gradle构建springMVC框架" class="headerlink" title="Gradle构建springMVC框架"></a>Gradle构建springMVC框架</h3><p>打开我们的编译器，创建一个新的工程，选择Gradle,勾选Web,如下图所示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-5c90a06fa77f48fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建工程"></p>
+<p>点击Next，填写GroupId和ArtfactId(GroupId：项目的唯一标识，ArtfactId：一般为项目名称)，如图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-df8de46bf6625cde.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建工程"></p>
+<p>依然Next，配置一些Gradle的相关信息，具体的我不是很了解，这里选择的是会自己去下载相应的Gradle版本。当然也可以使用本地Gradle，建议先下载到本地，不然就自己准备梯子。这个下载速度真的感人。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-a1cc7e39b565b323.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建工程"></p>
+<p>点击Next，项目创建完成。基础的工程目录结构如下图:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-9ae70d4b919fef8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="基础工程目录"></p>
+<p>接下来配置Tomcat服务器，不知道怎么描述，我们还是看图说话吧，编译器右上角如图的地方，点击一个Tomcat服务。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-7fc7ae1a2476d3e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置Tomcat服务器"></p>
+<p>左上角的添加按钮点击添加一个Tomcat Server 选择Local</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-193c1b96bc78b5ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加Tomcat Server"></p>
+<p>输入一个Name，我们发现右下角有一个错误提示，是让你配置一个路径，点击Fix随便选一个就好了。然后点击Apply，再点击OK。这样，我们的Tomcat Server就配置完成了。还是图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-3021f4ca55add446.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置Tomcat Server"></p>
+<p>如果不出什么意外的话，程序可以跑起来了。为了看效果，接下来我们到src目录下的main目录下的webapp目录中找到index.jsp文件，在body中随意的输入一点文字。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-2c01b3975be889c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="修改index.jsp文件"><br>运行程序，如果可以看到默认的jsp页面，表示一切到这里都很正常。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-725fb8c7c1a26f7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行成功的jsp页面"></p>
+<p>到这里，基础的工程搭建出来了，接着呢，我们利用Gradle导入SpringMVC的框架<br>打开工程目录下的build.gradle文件，在dependencies中引入框架。这个我觉得就相当于iOS开发中的cococaPods。一个构建和管理三方依赖的插件。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-bce4c0adb4573ed0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="build.gradle"></p>
+<blockquote>
+<p>compile ‘org.springframework:spring-webmvc:4.3.6.RELEASE’</p>
+</blockquote>
+<p>这里会自动的去下载框架需要的jar包，这里还是要会科学上网。不然这个下载速度真不是一个慢字能够描述的。修改了这个文件之后，就会自动去下载了。有时候网不好的话，会失败的。失败之后可以在如上图所示的最右边的侧边栏中选中Gradle，然后点击刷新就好了。</p>
+<p>SpringMVC引入完成，接着我们去java目录下建一个包，接着新建一个类出来。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-e8ab7df245eb9663.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建一个包"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-b669d131c9da9a3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="在刚刚建的包下建一个DemoController的类"><br>接下来在DemoController中简单的写几行代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"test"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/hello"</span>, method = RequestMethod.GET)</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Map map = <span class="keyword">new</span> HashMap();</span><br><span class="line"></span><br><span class="line">        map.put(<span class="string">"msg"</span>, <span class="string">"请求成功"</span>);</span><br><span class="line"></span><br><span class="line">        map.put(<span class="string">"data"</span>, <span class="string">"浪漫恋星空"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注解的意思呢，我也解释不清楚，只知道这样写。先把这些东西知道怎么用了再慢慢的去研究下。</p>
+<p>修改了代码，我们重新启动一下服务器。还是可以正常的看到我们刚刚的页面，接下来在地址栏输入下面的地址，当然这个地址是我Demo中随意写的。它的构成也很简单，就是本机的地址加上@RequestMapping里面的东西拼接起来的。</p>
+<blockquote>
+<p><a href="http://localhost:8080/test/hello" target="_blank" rel="noopener">http://localhost:8080/test/hello</a></p>
+</blockquote>
+<p>然后，开心的敲了一下回车。我们就可以得到我们的数据了。等等，这么简单？看图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-f176b304ac06cc17.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="错误页面"><br>喜闻乐见，说好的数据呢。习惯了Xcode崩溃在main的地方，到这里，是不是感觉一脸懵逼？别急，刚刚我们虽然引入了SpringMVC框架，但是还需要在项目中作一些配置。感觉后台的东西真的太杂了，各种配置工程，反正我是很不习惯。打开Project Structure(编译器界面的右上角的地方)，找到Web Gradle模块，并点击Deployment Descriptors栏右侧的加号添加web.xml文件。如图：<br><img src="http://upload-images.jianshu.io/upload_images/1777873-ff51e71b64f9104b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建web.xml文件"><br>打开刚刚创建的web.xml文件，在该文件中添加如下映射</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>再次重启服务器，在地址栏输入前面的地址。然后我发现还是一个404的浏览错误，因为自己对于后台基本的配置不是很了解，在这里倒腾了很久。</p>
+<p>刚刚我们在建立web.xml的时候是默认的路径，我这边是在.idea目录的modules目录的WEB-INF下，而这个路径查资料说是必须在webapp目录下的WEB-INF中，然而我初始的工程中没有这个文件。没有怎么办，new一个出来就完事了。创建好了之后把我们之前的web.xml文件拖到webapp目录的WEB-INF下，重启服务器。还是刚刚的地址。tomcat返回异常信息，nested exception is java.io.FileNotFoundException: Could not open ServletContext resource [/WEB-INF/dispatcher-servlet.xml]。这是因为刚刚我们在web.xml中配置了一个dispatcher，我们需要同时给这个dispatcher创建一个dispatcher-servlet.xml，还是在webapp目录的WEB-INF中。</p>
+<blockquote>
+<p>注意：dispatcher-servlet.xml这是一个Spring Config文件，它的名字是有规定的，就是刚刚在web.xml中配置的servlet-name-servlet.xml。</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-8fb192fe6705aa62.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建Spring Config文件"><br>创建好这个文件之后，在dispatcher-servlet.xml中输入下面的内容。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">                        http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">                        http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">                        http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">                        http://www.springframework.org/schema/mvc</span></span></span><br><span class="line"><span class="tag"><span class="string">                        http://www.springframework.org/schema/mvc/spring-mvc.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.iotguard.demo.controller"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span><span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>再次重启服务器，地址栏输入最开的地址。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-feded17b71df715a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="错误信息"></p>
+<p>这次又出现了如图的错误信息，大致可以知道这是一个跟数据类型相关的报错，因为我们App端拿到服务器的数据通常都是json格式的。而我们在代码中是直接返回的一个map，@ResponseBody这个注解是SpringMVC框架中的，通过它可以自动转换成json数据格式。通过这些知识，然后百度关键字，SpringMVC整合json。然后发现，还需要给框架整合一个json解析的jar包，这里就使用fastjson。修改dispatcher-servlet.xml的文件内容如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">                        http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">                        http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">                        http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">                        http://www.springframework.org/schema/mvc</span></span></span><br><span class="line"><span class="tag"><span class="string">                        http://www.springframework.org/schema/mvc/spring-mvc.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--注意：这里的包的名字要填自己的--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.xingkong.controller"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置@ResponseBody由fastjson解析--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:message-converters</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.http.converter.StringHttpMessageConverter"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"defaultCharset"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mvc:message-converters</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:default-servlet-handler</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"fastJsonpResponseBodyAdvice"</span> <span class="attr">class</span>=<span class="string">"com.alibaba.fastjson.support.spring.FastJsonpResponseBodyAdvice"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>callback<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>jsonp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最后别忘了添加fastjson的依赖。修改build.gradle文件。</p>
+<blockquote>
+<p>compile group: ‘com.alibaba’, name: ‘fastjson’, version: ‘1.2.28’</p>
+</blockquote>
+<p>这里给大家安利一个网站，在这个网站可以找到很多我们需要的jar包的gradle依赖的添加。<br><a href="http://www.mvnrepository.com/" target="_blank" rel="noopener">http://www.mvnrepository.com/</a></p>
+<p>添加完依赖之后，重启服务器。接下来干什么不用再说了吧，都要说哭了。</p>
+<p>终于等到你。。。还好我没。。。（额。。。有点偏了！ ）！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-bc3e1945a367a80c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="正确请求到的数据"></p>
+<p>倒腾这么久，终于还是出来了是吧。现在打开我们的Xcode，随意做一个网络请求。看看能不能把我们的数据请求回来。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[ZZTNetworkingManager GET:<span class="string">@"http://localhost:8080/test/hello"</span> parameters:<span class="literal">nil</span> success:^(<span class="keyword">id</span> responseObject) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,responseObject);</span><br><span class="line">        </span><br><span class="line">    &#125; failure:^(<span class="built_in">NSError</span> *error) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,error);</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+<p>这里就是随便拿了一个项目中的网络请求方法，封装的AF，懒得重新去建工程pod三方，这里就偷个懒。运行程序，心态瞬间就炸了，请求失败了。报错如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;Error Domain=com.alamofire.error.serialization.response Code=<span class="number">-1011</span> <span class="string">"Request failed: internal server error (500)</span></span><br></pre></td></tr></table></figure>
+<p>看到这个报错大家应该都不会很陌生吧，刚刚开始工作的iOS开发，如果遇到一个也是第一次给iOS端写接口的后台小兄弟，然后两个就懵逼了。这里实际上就算iOS端和后台没有约定contentType，正经一点的公司这些东西可能是老大们约定好了的。如果遇到都是新手的话，这是必踩的坑。</p>
+<p>修改DemoController中的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"test"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/hello"</span>, method = RequestMethod.GET, produces=<span class="string">"application/json;charset=UTF-8"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Map map = <span class="keyword">new</span> HashMap();</span><br><span class="line"></span><br><span class="line">        map.put(<span class="string">"msg"</span>, <span class="string">"请求成功"</span>);</span><br><span class="line"></span><br><span class="line">        map.put(<span class="string">"data"</span>, <span class="string">"浪漫恋星空"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在@RequestMapping中添加一个produces=”application/json;charset=UTF-8”就好了。</p>
+<p>再次请求接口，可以看到控制台返回了请求到的数据。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">00</span>:<span class="number">02</span>:<span class="number">00</span>] __31-[ZZTHotController viewDidLoad]_block_invoke [第<span class="number">35</span>行] &#123;</span><br><span class="line">  <span class="string">"msg"</span> : <span class="string">"请求成功"</span>,</span><br><span class="line">  <span class="string">"data"</span> : <span class="string">"浪漫恋星空"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上就是Gradle构建SpringMVC框架实现App请求接口的内容介绍。当然，这是一些后台很基础的试用。稍微有一点后台基础的人都觉得这个很简单，虽然我作为一个移动端开发，但是我也有一颗后台的心好吧。感兴趣的移动端朋友可以试试写着玩。无聊了再学点数据库设计，再懂一些连接池技术，sql相信都会一些。搞不好哪天就自己倒腾一个像模像样的App出来。从设计到App再到后台，一人包办。想想还有点小激动对吧？</p>
+<p>如果你在阅读过程中有发现文章的错误或者不足的地方，欢迎留言指出。如果你觉得文章对你还有一点帮助，随手点个赞也是极好的。一直很难下定决心做一件事，今年，我希望能够坚持写博客，记录这一年学习的过程！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/12/带PlaceHolder的UITextView/" rel="next" title="带PlaceHolder的UITextView">
+                <i class="fa fa-chevron-left"></i> 带PlaceHolder的UITextView
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/12/基于RAC封装带缓存的网络请求/" rel="prev" title="基于RAC封装带缓存的网络请求">
+                基于RAC封装带缓存的网络请求 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg"
+                alt="浪漫恋星空" />
+            
+              <p class="site-author-name" itemprop="name">浪漫恋星空</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心 方得始终 初心易得 始终难守</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jhchenchong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradle构建SpringMVC框架实现App请求接口"><span class="nav-number">1.</span> <span class="nav-text">Gradle构建SpringMVC框架实现App请求接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境描述"><span class="nav-number">2.</span> <span class="nav-text">环境描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradle构建springMVC框架"><span class="nav-number">3.</span> <span class="nav-text">Gradle构建springMVC框架</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浪漫恋星空</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
