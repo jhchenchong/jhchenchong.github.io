@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="前言在日常的开发中，在UITableViewCell中嵌套UIWebView应该算是一个很常见的需求。通常，UITableViewCell要去自适应UIWebView的高度，拦截html中的图片点击事件，以及一些新闻类App会改变正文的字号或者字体。这里简单的把这几个需求实现一下。 最终完成的效果如图(文章结尾处提供源码下载地址)：  直接上代码，自定义UITableViewCell，提供需要的属">
+<meta name="description" content="前言在日常的开发中，在UITableViewCell中嵌套UIWebView应该算是一个很常见的需求。通常，UITableViewCell要去自适应UIWebView的高度，拦截html中的图片点击事件，以及一些新闻类App会改变正文的字号或者字体。这里简单的把这几个需求实现一下。 最终完成的效果如图(文章结尾处提供源码下载地址)：">
 <meta name="keywords" content="UITableViewCell,UIWebView">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UITableViewCell嵌套UIWebView高度自适应 设置字号 拦截图片点击事件">
 <meta property="og:url" content="http://yoursite.com/2018/01/12/UITableViewCell嵌套UIWebView高度自适应，设置字号，拦截图片点击事件。/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
-<meta property="og:description" content="前言在日常的开发中，在UITableViewCell中嵌套UIWebView应该算是一个很常见的需求。通常，UITableViewCell要去自适应UIWebView的高度，拦截html中的图片点击事件，以及一些新闻类App会改变正文的字号或者字体。这里简单的把这几个需求实现一下。 最终完成的效果如图(文章结尾处提供源码下载地址)：  直接上代码，自定义UITableViewCell，提供需要的属">
+<meta property="og:description" content="前言在日常的开发中，在UITableViewCell中嵌套UIWebView应该算是一个很常见的需求。通常，UITableViewCell要去自适应UIWebView的高度，拦截html中的图片点击事件，以及一些新闻类App会改变正文的字号或者字体。这里简单的把这几个需求实现一下。 最终完成的效果如图(文章结尾处提供源码下载地址)：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-849506c6a9483fd9.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2018-01-12T13:55:24.753Z">
+<meta property="og:updated_time" content="2018-01-13T08:56:02.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UITableViewCell嵌套UIWebView高度自适应 设置字号 拦截图片点击事件">
-<meta name="twitter:description" content="前言在日常的开发中，在UITableViewCell中嵌套UIWebView应该算是一个很常见的需求。通常，UITableViewCell要去自适应UIWebView的高度，拦截html中的图片点击事件，以及一些新闻类App会改变正文的字号或者字体。这里简单的把这几个需求实现一下。 最终完成的效果如图(文章结尾处提供源码下载地址)：  直接上代码，自定义UITableViewCell，提供需要的属">
+<meta name="twitter:description" content="前言在日常的开发中，在UITableViewCell中嵌套UIWebView应该算是一个很常见的需求。通常，UITableViewCell要去自适应UIWebView的高度，拦截html中的图片点击事件，以及一些新闻类App会改变正文的字号或者字体。这里简单的把这几个需求实现一下。 最终完成的效果如图(文章结尾处提供源码下载地址)：">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1777873-849506c6a9483fd9.gif?imageMogr2/auto-orient/strip">
 
 
@@ -347,6 +347,7 @@
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在日常的开发中，在UITableViewCell中嵌套UIWebView应该算是一个很常见的需求。通常，UITableViewCell要去自适应UIWebView的高度，拦截html中的图片点击事件，以及一些新闻类App会改变正文的字号或者字体。这里简单的把这几个需求实现一下。</p>
 <p>最终完成的效果如图(文章结尾处提供源码下载地址)：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1777873-849506c6a9483fd9.gif?imageMogr2/auto-orient/strip" alt="效果图.gif"></p>
+<a id="more"></a>
 <p>直接上代码，自定义UITableViewCell，提供需要的属性供外界访问</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/// WebView完成加载时候的高度</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span>(^WebViewDidFinishLoad)(<span class="built_in">CGFloat</span> height);</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 点击WebView中图片触发的回调</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span>(^WebViewImageClickBlock)(<span class="built_in">NSArray</span> *imageArray,<span class="built_in">NSInteger</span> index);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">XKWebViewCell</span> : <span class="title">UITableViewCell</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) WebViewDidFinishLoad block;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) WebViewImageClickBlock imageClickBlock;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *htmlString;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
 <p>实现文件，简单的配置一下UIWebView的属性。</p>
@@ -398,8 +399,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/12/WKWebView在iOS8上的闪退异常/" rel="next" title="WKWebView在iOS8上闪退异常">
-                <i class="fa fa-chevron-left"></i> WKWebView在iOS8上闪退异常
+              <a href="/2018/01/12/iOS动态修改状态栏的颜色/" rel="next" title="iOS动态修改状态栏的颜色">
+                <i class="fa fa-chevron-left"></i> iOS动态修改状态栏的颜色
               </a>
             
           </div>
@@ -408,8 +409,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/12/Safe-Area-Layout-Guide/" rel="prev" title="Safe Area Layout Guide before iOS 9.0">
-                Safe Area Layout Guide before iOS 9.0 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/12/WKWebView在iOS8上的闪退异常/" rel="prev" title="WKWebView在iOS8上闪退异常">
+                WKWebView在iOS8上闪退异常 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

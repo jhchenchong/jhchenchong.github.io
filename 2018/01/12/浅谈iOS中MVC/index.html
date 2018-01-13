@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="概念 MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。  简">
+<meta name="description" content="概念 MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。">
 <meta name="keywords" content="MVC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈iOS中的MVC">
 <meta property="og:url" content="http://yoursite.com/2018/01/12/浅谈iOS中MVC/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
-<meta property="og:description" content="概念 MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。  简">
+<meta property="og:description" content="概念 MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-e496eccdb5a8c0e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-01-12T13:36:23.320Z">
+<meta property="og:updated_time" content="2018-01-13T08:53:18.094Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈iOS中的MVC">
-<meta name="twitter:description" content="概念 MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。  简">
+<meta name="twitter:description" content="概念 MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1777873-e496eccdb5a8c0e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -347,7 +347,9 @@
         <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote>
 <p>MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。</p>
 </blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/1777873-e496eccdb5a8c0e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MVC.png"><br>简单的说一下这张图吧，这就像是一张MVC中的“交通规则”图，在其中制定了它们之间的通信规则。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-e496eccdb5a8c0e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MVC.png"></p>
+<a id="more"></a>
+<p>简单的说一下这张图吧，这就像是一张MVC中的“交通规则”图，在其中制定了它们之间的通信规则。</p>
 <ul>
 <li>Model和View永远不能相互通信，只能通过Controller传递。</li>
 <li>Controller可以直接与Model对话，Model通过Notification和KVO机制与Controller间接通信。</li>
@@ -396,6 +398,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/12/IQKeyboardManager导航栏上移/" rel="next" title="IQKeyboardManager导航栏上移">
+                <i class="fa fa-chevron-left"></i> IQKeyboardManager导航栏上移
+              </a>
             
           </div>
 

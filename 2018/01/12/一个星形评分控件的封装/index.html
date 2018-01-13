@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="前言很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。 效果图 实现思路 创建前后两个frame相等的视图 在创建好的视图上循环添加需要个数的">
+<meta name="description" content="前言很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。 效果图">
 <meta name="keywords" content="自定义视图,评分控件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个星形评分控件的封装">
 <meta property="og:url" content="http://yoursite.com/2018/01/12/一个星形评分控件的封装/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
-<meta property="og:description" content="前言很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。 效果图 实现思路 创建前后两个frame相等的视图 在创建好的视图上循环添加需要个数的">
+<meta property="og:description" content="前言很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。 效果图">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-d5bde20cc0f48c48.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2018-01-12T13:42:01.690Z">
+<meta property="og:updated_time" content="2018-01-13T08:53:41.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个星形评分控件的封装">
-<meta name="twitter:description" content="前言很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。 效果图 实现思路 创建前后两个frame相等的视图 在创建好的视图上循环添加需要个数的">
+<meta name="twitter:description" content="前言很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。 效果图">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1777873-d5bde20cc0f48c48.gif?imageMogr2/auto-orient/strip">
 
 
@@ -346,6 +346,7 @@
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。</p>
 <h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="http://upload-images.jianshu.io/upload_images/1777873-d5bde20cc0f48c48.gif?imageMogr2/auto-orient/strip" alt="效果图.gif"></p>
+<a id="more"></a>
 <h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><ul>
 <li>创建前后两个frame相等的视图</li>
 <li>在创建好的视图上循环添加需要个数的UIImageView，并设置对应的图片。</li>
@@ -421,8 +422,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/12/星空回忆里的那些点滴/" rel="prev" title="星空回忆里的那些点滴">
-                星空回忆里的那些点滴 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/12/iOS打包配置/" rel="prev" title="iOS打包配置">
+                iOS打包配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

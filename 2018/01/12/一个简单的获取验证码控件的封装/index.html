@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="写在前面在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。 实现效果 实现思路自定义一个UIView，在这个View上添加一个显示进度的ProgressView，和一个显示文字的UILabel。">
+<meta name="description" content="写在前面在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。 实现效果">
 <meta name="keywords" content="自定义视图,验证码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个简单的获取验证码控件的封装">
 <meta property="og:url" content="http://yoursite.com/2018/01/12/一个简单的获取验证码控件的封装/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
-<meta property="og:description" content="写在前面在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。 实现效果 实现思路自定义一个UIView，在这个View上添加一个显示进度的ProgressView，和一个显示文字的UILabel。">
+<meta property="og:description" content="写在前面在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。 实现效果">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-110fedabc97ea4c4.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1777873-0af13d1a6df734cc.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2018-01-12T13:38:48.157Z">
+<meta property="og:updated_time" content="2018-01-13T08:53:31.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个简单的获取验证码控件的封装">
-<meta name="twitter:description" content="写在前面在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。 实现效果 实现思路自定义一个UIView，在这个View上添加一个显示进度的ProgressView，和一个显示文字的UILabel。">
+<meta name="twitter:description" content="写在前面在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。 实现效果">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1777873-110fedabc97ea4c4.gif?imageMogr2/auto-orient/strip">
 
 
@@ -347,6 +347,7 @@
       
         <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。</p>
 <h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h3><p><img src="http://upload-images.jianshu.io/upload_images/1777873-110fedabc97ea4c4.gif?imageMogr2/auto-orient/strip" alt="效果.gif"></p>
+<a id="more"></a>
 <h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><p>自定义一个UIView，在这个View上添加一个显示进度的ProgressView，和一个显示文字的UILabel。通过NSTimer修改UILabel上的文字，渐变的动画就是简单的UIView动画，通过改变ProgressView的frame来实现。</p>
 <h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><p>创建一个XKCaptchaView继承于UIView，在.h头文件中声明需要的属性和方法。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">XKCaptchaView</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 点击XKCaptchaView触发的回调Block</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span>(^XKCaptchaActionBlock)(XKCaptchaView *view);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">XKCaptchaView</span> : <span class="title">UIView</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 间隔时长（指定一个时长，在这个时长之后控件可以重新点击）</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSTimeInterval</span> reEnableTimeInterval;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 进度视图的背景颜色</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIColor</span> *progressViewBgColor;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化方法</span></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame reEnableTimeInterval:(<span class="built_in">NSTimeInterval</span>)interval actionBlock:(XKCaptchaActionBlock)actionBlock;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开始动画</span></span><br><span class="line">- (<span class="keyword">void</span>)startAnimation;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 回到最初的状态</span></span><br><span class="line">- (<span class="keyword">void</span>)changToNormal;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
@@ -390,8 +391,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/" rel="next" title="从零开始 一步步将自己的框架导入CocoaPods">
-                <i class="fa fa-chevron-left"></i> 从零开始 一步步将自己的框架导入CocoaPods
+              <a href="/2018/01/12/Safe-Area-Layout-Guide/" rel="next" title="Safe Area Layout Guide before iOS 9.0">
+                <i class="fa fa-chevron-left"></i> Safe Area Layout Guide before iOS 9.0
               </a>
             
           </div>
@@ -400,8 +401,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/12/IQKeyboardManager导航栏上移/" rel="prev" title="IQKeyboardManager导航栏上移">
-                IQKeyboardManager导航栏上移 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/12/星空回忆里的那些点滴/" rel="prev" title="星空回忆里的那些点滴">
+                星空回忆里的那些点滴 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
