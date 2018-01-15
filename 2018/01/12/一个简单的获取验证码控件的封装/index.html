@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="自定义视图,验证码," />
+  <meta name="keywords" content="验证码,自定义视图," />
 
 
 
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="写在前面在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。 实现效果">
-<meta name="keywords" content="自定义视图,验证码">
+<meta name="keywords" content="验证码,自定义视图">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个简单的获取验证码控件的封装">
 <meta property="og:url" content="http://yoursite.com/2018/01/12/一个简单的获取验证码控件的封装/index.html">
@@ -325,9 +325,51 @@
 
           
           
+             <span id="/2018/01/12/一个简单的获取验证码控件的封装/" class="leancloud_visitors" data-flag-title="一个简单的获取验证码控件的封装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,325字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长&#58;</span>
+                
+                <span title="阅读时长">
+                  约6分钟
+                </span>
+              
+            </div>
           
 
           
@@ -376,9 +418,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/自定义视图/" rel="tag"># 自定义视图</a>
-          
             <a href="/tags/验证码/" rel="tag"># 验证码</a>
+          
+            <a href="/tags/自定义视图/" rel="tag"># 自定义视图</a>
           
         </div>
       
@@ -391,8 +433,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/12/Safe-Area-Layout-Guide/" rel="next" title="Safe Area Layout Guide before iOS 9.0">
-                <i class="fa fa-chevron-left"></i> Safe Area Layout Guide before iOS 9.0
+              <a href="/2018/01/12/OC实现有趣的过山车动画/" rel="next" title="有趣的过山车动画">
+                <i class="fa fa-chevron-left"></i> 有趣的过山车动画
               </a>
             
           </div>
@@ -760,6 +802,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("RIsytInTWKj8KEGeQJujLHqP-gzGzoHsz", "7yTHKCB02OxkNBNIGK9Wpti4");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
