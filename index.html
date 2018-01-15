@@ -642,7 +642,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/OC实现有趣的过山车动画/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/IQKeyboardManager导航栏上移/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -661,7 +661,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/12/OC实现有趣的过山车动画/" itemprop="url">有趣的过山车动画</a></h1>
+                <a class="post-title-link" href="/2018/01/12/IQKeyboardManager导航栏上移/" itemprop="url">IQKeyboardManager导航栏上移</a></h1>
         
 
         <div class="post-meta">
@@ -713,7 +713,7 @@
 
           
           
-             <span id="/2018/01/12/OC实现有趣的过山车动画/" class="leancloud_visitors" data-flag-title="有趣的过山车动画">
+             <span id="/2018/01/12/IQKeyboardManager导航栏上移/" class="leancloud_visitors" data-flag-title="IQKeyboardManager导航栏上移">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -738,7 +738,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,498字
+                  280字
                 </span>
               
 
@@ -754,7 +754,7 @@
                   <span class="post-meta-item-text">阅读时长&#58;</span>
                 
                 <span title="阅读时长">
-                  约15分钟
+                  约1分钟
                 </span>
               
             </div>
@@ -776,21 +776,12 @@
 
       
         
-          <p>在网上看到一个有趣的过山车动画，有大神用swift实现了。我参照着用OC实现了一遍，我们不生产代码，只是代码的搬运工。</p>
-<p>动画如图所示：<br><img src="http://upload-images.jianshu.io/upload_images/1777873-7cecaf5752f19324.gif?imageMogr2/auto-orient/strip" alt="过山车动画.gif"></p>
-<h3 id="实现动画主要使用到的类："><a href="#实现动画主要使用到的类：" class="headerlink" title="实现动画主要使用到的类："></a>实现动画主要使用到的类：</h3><ul>
-<li>CAShapeLayer</li>
-<li>CAGradientLayer</li>
-<li>CAKeyframeAnimation</li>
-</ul>
-<h3 id="实现思路："><a href="#实现思路：" class="headerlink" title="实现思路："></a>实现思路：</h3><p>渐变的背景用CAGradientLayer实现，山峰，草坪和轨道利用CAShapeLayer配合UIBezierPath实现，云，树和大地都是图片资源，直接通过设置CALayer的contents实现。动画实现使用的是CAKeyframeAnimation。代码如下：<a href="https://github.com/jhchenchong/rollerCoasterAnimation.git" target="_blank" rel="noopener">过山车动画OC</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/OC实现有趣的过山车动画/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p>使用IQKeyboardManager来处理项目中的文本框被遮挡的问题是一个很好的选择, 但是也因为这个三方框架自动做了太多的事情有时候会导致一些很奇怪的问题。最常见的就是当控制器带有导航栏的时候会导致导航栏上移。官方Demo中也有提供一些解决方法。最近在实现一个表单提交页的时候，在UITableViewCell中有UITextField，在使用IQKeyboardManager的过程中也发现导航栏有上移的情况。但是我看Demo中并不会出现这样的情况。后来发现，在布局UITableView的时候，是直接设置的frame为self.view.bounds，看起来并没有什么大问题，但是这样IQKeyboardManager在处理的时候会让整个View的frame都上移，导航栏也就跟着偏移了。正确的做法是让UITableView的frame从导航栏下面开始布局。像这样</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLayoutSubviews</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLayoutSubviews];</span><br><span class="line">    [<span class="keyword">self</span>.tableView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">        make.top.mas_equalTo(kTopHeight);</span><br><span class="line">        make.bottom.left.right.mas_equalTo(<span class="number">0</span>);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，导航栏就不会被顶出屏幕了。</p>
+
+          
         
       
     </div>
@@ -2012,7 +2003,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/IQKeyboardManager导航栏上移/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/OC实现有趣的过山车动画/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -2031,7 +2022,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/12/IQKeyboardManager导航栏上移/" itemprop="url">IQKeyboardManager导航栏上移</a></h1>
+                <a class="post-title-link" href="/2018/01/12/OC实现有趣的过山车动画/" itemprop="url">有趣的过山车动画</a></h1>
         
 
         <div class="post-meta">
@@ -2083,7 +2074,7 @@
 
           
           
-             <span id="/2018/01/12/IQKeyboardManager导航栏上移/" class="leancloud_visitors" data-flag-title="IQKeyboardManager导航栏上移">
+             <span id="/2018/01/12/OC实现有趣的过山车动画/" class="leancloud_visitors" data-flag-title="有趣的过山车动画">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2108,7 +2099,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  280字
+                  2,498字
                 </span>
               
 
@@ -2124,7 +2115,7 @@
                   <span class="post-meta-item-text">阅读时长&#58;</span>
                 
                 <span title="阅读时长">
-                  约1分钟
+                  约15分钟
                 </span>
               
             </div>
@@ -2146,12 +2137,21 @@
 
       
         
-          
-            <p>使用IQKeyboardManager来处理项目中的文本框被遮挡的问题是一个很好的选择, 但是也因为这个三方框架自动做了太多的事情有时候会导致一些很奇怪的问题。最常见的就是当控制器带有导航栏的时候会导致导航栏上移。官方Demo中也有提供一些解决方法。最近在实现一个表单提交页的时候，在UITableViewCell中有UITextField，在使用IQKeyboardManager的过程中也发现导航栏有上移的情况。但是我看Demo中并不会出现这样的情况。后来发现，在布局UITableView的时候，是直接设置的frame为self.view.bounds，看起来并没有什么大问题，但是这样IQKeyboardManager在处理的时候会让整个View的frame都上移，导航栏也就跟着偏移了。正确的做法是让UITableView的frame从导航栏下面开始布局。像这样</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLayoutSubviews</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLayoutSubviews];</span><br><span class="line">    [<span class="keyword">self</span>.tableView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">        make.top.mas_equalTo(kTopHeight);</span><br><span class="line">        make.bottom.left.right.mas_equalTo(<span class="number">0</span>);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样，导航栏就不会被顶出屏幕了。</p>
-
-          
+          <p>在网上看到一个有趣的过山车动画，有大神用swift实现了。我参照着用OC实现了一遍，我们不生产代码，只是代码的搬运工。</p>
+<p>动画如图所示：<br><img src="http://upload-images.jianshu.io/upload_images/1777873-7cecaf5752f19324.gif?imageMogr2/auto-orient/strip" alt="过山车动画.gif"></p>
+<h3 id="实现动画主要使用到的类："><a href="#实现动画主要使用到的类：" class="headerlink" title="实现动画主要使用到的类："></a>实现动画主要使用到的类：</h3><ul>
+<li>CAShapeLayer</li>
+<li>CAGradientLayer</li>
+<li>CAKeyframeAnimation</li>
+</ul>
+<h3 id="实现思路："><a href="#实现思路：" class="headerlink" title="实现思路："></a>实现思路：</h3><p>渐变的背景用CAGradientLayer实现，山峰，草坪和轨道利用CAShapeLayer配合UIBezierPath实现，云，树和大地都是图片资源，直接通过设置CALayer的contents实现。动画实现使用的是CAKeyframeAnimation。代码如下：<a href="https://github.com/jhchenchong/rollerCoasterAnimation.git" target="_blank" rel="noopener">过山车动画OC</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/12/OC实现有趣的过山车动画/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2300,7 +2300,10 @@
           
           
 
-          
+          <div id="music163player">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=33715045&auto=1&height=66">
+</iframe>
+</div>
 
         </div>
       </section>
