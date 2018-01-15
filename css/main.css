@@ -1823,7 +1823,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff0ef5;
+  background: #e4506f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2989,5 +2989,14 @@ pre .javascript .function {
 @media (max-width: 767px) {
   .post-body {
     text-align: justify;
+  }
+}
+@media screen and (min-width: 1200px) {
+  body {
+    background-image: url("http://api.dujin.org/bing/1920.php");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+    opacity: 0.8;
   }
 }
