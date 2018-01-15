@@ -92,7 +92,7 @@
 <meta name="keywords" content="自定义视图,评分控件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个星形评分控件的封装">
-<meta property="og:url" content="http://yoursite.com/2018/01/12/一个星形评分控件的封装/index.html">
+<meta property="og:url" content="http://localhost:4000/2018/01/12/一个星形评分控件的封装/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
 <meta property="og:description" content="前言很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。 效果图">
 <meta property="og:locale" content="zh-Hans">
@@ -120,18 +120,18 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'PEUKKR4W7Y',
+      apiKey: '43a01739e84a106b8e53acd095eb97be',
+      indexName: 'xingkong',
       hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与 ~${query}~ 相关的内容","hits_stats":"${hits} 条相关记录 共耗时${time} ms"}
     }
   };
 </script>
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/12/一个星形评分控件的封装/"/>
+  <link rel="canonical" href="http://localhost:4000/2018/01/12/一个星形评分控件的封装/"/>
 
 
 
@@ -233,9 +233,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -264,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/一个星形评分控件的封装/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/一个星形评分控件的封装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -473,8 +511,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/12/IQKeyboardManager导航栏上移/" rel="next" title="IQKeyboardManager导航栏上移">
-                <i class="fa fa-chevron-left"></i> IQKeyboardManager导航栏上移
+              <a href="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/" rel="next" title="从零开始 一步步将自己的框架导入CocoaPods">
+                <i class="fa fa-chevron-left"></i> 从零开始 一步步将自己的框架导入CocoaPods
               </a>
             
           </div>
@@ -483,8 +521,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/12/星空回忆里的那些点滴/" rel="prev" title="星空回忆里的那些点滴">
-                星空回忆里的那些点滴 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/" rel="prev" title="基本排序算法的OC实现">
+                基本排序算法的OC实现 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -739,9 +777,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -778,16 +813,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
@@ -859,6 +884,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
 
 
 

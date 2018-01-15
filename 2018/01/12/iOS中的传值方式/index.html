@@ -92,7 +92,7 @@
 <meta name="keywords" content="iOS传值">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS中的传值方式">
-<meta property="og:url" content="http://yoursite.com/2018/01/12/iOS中的传值方式/index.html">
+<meta property="og:url" content="http://localhost:4000/2018/01/12/iOS中的传值方式/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
 <meta property="og:description" content="在日常开发过程中，我们经常会遇到值传递。这里，介绍几种iOS开发中常见的传值方式。 1.属性传值属性传值是iOS中最为常见的正向传值方式，假定我们现在有这样一个需求，在A控制器点击按钮，将按钮的标题显示在B控制器的label上。首先，我们创建两个控制器CCFirstViewController和CCSecondViewController,在CCSecondViewController.h中声明一">
 <meta property="og:locale" content="zh-Hans">
@@ -118,18 +118,18 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'PEUKKR4W7Y',
+      apiKey: '43a01739e84a106b8e53acd095eb97be',
+      indexName: 'xingkong',
       hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与 ~${query}~ 相关的内容","hits_stats":"${hits} 条相关记录 共耗时${time} ms"}
     }
   };
 </script>
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/12/iOS中的传值方式/"/>
+  <link rel="canonical" href="http://localhost:4000/2018/01/12/iOS中的传值方式/"/>
 
 
 
@@ -231,9 +231,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -262,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/iOS中的传值方式/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/iOS中的传值方式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -479,8 +517,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/12/iOS动态修改状态栏的颜色/" rel="next" title="iOS动态修改状态栏的颜色">
-                <i class="fa fa-chevron-left"></i> iOS动态修改状态栏的颜色
+              <a href="/2018/01/12/UITableViewCell嵌套UIWebView高度自适应，设置字号，拦截图片点击事件。/" rel="next" title="UITableViewCell嵌套UIWebView高度自适应 设置字号 拦截图片点击事件">
+                <i class="fa fa-chevron-left"></i> UITableViewCell嵌套UIWebView高度自适应 设置字号 拦截图片点击事件
               </a>
             
           </div>
@@ -489,8 +527,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/12/WKWebView在iOS8上的闪退异常/" rel="prev" title="WKWebView在iOS8上闪退异常">
-                WKWebView在iOS8上闪退异常 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/12/Safe-Area-Layout-Guide/" rel="prev" title="Safe Area Layout Guide before iOS 9.0">
+                Safe Area Layout Guide before iOS 9.0 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -745,9 +783,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -784,16 +819,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
@@ -865,6 +890,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
 
 
 

@@ -92,7 +92,7 @@
 <meta name="keywords" content="iOS,开源,你的名字,动漫,二次元">
 <meta property="og:type" content="article">
 <meta property="og:title" content="开源一个练手的小项目">
-<meta property="og:url" content="http://yoursite.com/2018/01/12/开源一个练手的小项目/index.html">
+<meta property="og:url" content="http://localhost:4000/2018/01/12/开源一个练手的小项目/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
 <meta property="og:description" content="关于小项目这是超低仿《你的日记》的一款小应用，主要实现了日记的编写和本地化。结合了一些有趣的小动画和自定义转场。代码写得比较随意，基本遵守MVC模式。如果有小伙伴对于项目里的动画感兴趣，可以在文章最后下载代码自行研究。如果不想研究，那就等有时间了我将动画相关的代码抽出来单独写一篇文章。项目的素材都来自于上面说的应用，感谢原作者的UI和交互思路。突然发现，好像自己真的只会写功能。不会写代码的UI不是">
 <meta property="og:locale" content="zh-Hans">
@@ -128,18 +128,18 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'PEUKKR4W7Y',
+      apiKey: '43a01739e84a106b8e53acd095eb97be',
+      indexName: 'xingkong',
       hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与 ~${query}~ 相关的内容","hits_stats":"${hits} 条相关记录 共耗时${time} ms"}
     }
   };
 </script>
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/12/开源一个练手的小项目/"/>
+  <link rel="canonical" href="http://localhost:4000/2018/01/12/开源一个练手的小项目/"/>
 
 
 
@@ -241,9 +241,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -272,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/开源一个练手的小项目/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/开源一个练手的小项目/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -470,8 +508,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/" rel="next" title="Gradle构建SpringMVC框架实现App请求接口">
-                <i class="fa fa-chevron-left"></i> Gradle构建SpringMVC框架实现App请求接口
+              <a href="/2018/01/12/浅谈iOS中MVC/" rel="next" title="浅谈iOS中的MVC">
+                <i class="fa fa-chevron-left"></i> 浅谈iOS中的MVC
               </a>
             
           </div>
@@ -480,8 +518,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/12/带PlaceHolder的UITextView/" rel="prev" title="带PlaceHolder的UITextView">
-                带PlaceHolder的UITextView <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/12/IQKeyboardManager导航栏上移/" rel="prev" title="IQKeyboardManager导航栏上移">
+                IQKeyboardManager导航栏上移 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -736,9 +774,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -775,16 +810,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
@@ -856,6 +881,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
 
 
 

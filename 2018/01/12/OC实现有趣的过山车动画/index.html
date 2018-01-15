@@ -92,7 +92,7 @@
 <meta name="keywords" content="动画">
 <meta property="og:type" content="article">
 <meta property="og:title" content="有趣的过山车动画">
-<meta property="og:url" content="http://yoursite.com/2018/01/12/OC实现有趣的过山车动画/index.html">
+<meta property="og:url" content="http://localhost:4000/2018/01/12/OC实现有趣的过山车动画/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
 <meta property="og:description" content="在网上看到一个有趣的过山车动画，有大神用swift实现了。我参照着用OC实现了一遍，我们不生产代码，只是代码的搬运工。 动画如图所示： 实现动画主要使用到的类： CAShapeLayer CAGradientLayer CAKeyframeAnimation  实现思路：渐变的背景用CAGradientLayer实现，山峰，草坪和轨道利用CAShapeLayer配合UIBezierPath实现，云">
 <meta property="og:locale" content="zh-Hans">
@@ -120,18 +120,18 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'PEUKKR4W7Y',
+      apiKey: '43a01739e84a106b8e53acd095eb97be',
+      indexName: 'xingkong',
       hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与 ~${query}~ 相关的内容","hits_stats":"${hits} 条相关记录 共耗时${time} ms"}
     }
   };
 </script>
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/12/OC实现有趣的过山车动画/"/>
+  <link rel="canonical" href="http://localhost:4000/2018/01/12/OC实现有趣的过山车动画/"/>
 
 
 
@@ -233,9 +233,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -264,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/OC实现有趣的过山车动画/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/OC实现有趣的过山车动画/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -447,8 +485,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/12/一个简单的获取验证码控件的封装/" rel="next" title="一个简单的获取验证码控件的封装">
-                <i class="fa fa-chevron-left"></i> 一个简单的获取验证码控件的封装
+              <a href="/2018/01/12/Safe-Area-Layout-Guide/" rel="next" title="Safe Area Layout Guide before iOS 9.0">
+                <i class="fa fa-chevron-left"></i> Safe Area Layout Guide before iOS 9.0
               </a>
             
           </div>
@@ -457,8 +495,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/12/iOS打包配置/" rel="prev" title="iOS打包配置">
-                iOS打包配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/12/一个简单的获取验证码控件的封装/" rel="prev" title="一个简单的获取验证码控件的封装">
+                一个简单的获取验证码控件的封装 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -713,9 +751,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -752,16 +787,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
@@ -833,6 +858,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
 
 
 

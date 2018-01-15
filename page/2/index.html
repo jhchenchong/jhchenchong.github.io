@@ -91,7 +91,7 @@
 <meta name="description" content="不忘初心 方得始终初心易得 始终难守">
 <meta property="og:type" content="website">
 <meta property="og:title" content="浪漫恋星空的博客">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:url" content="http://localhost:4000/page/2/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
 <meta property="og:description" content="不忘初心 方得始终初心易得 始终难守">
 <meta property="og:locale" content="zh-Hans">
@@ -116,18 +116,18 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'PEUKKR4W7Y',
+      apiKey: '43a01739e84a106b8e53acd095eb97be',
+      indexName: 'xingkong',
       hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与 ~${query}~ 相关的内容","hits_stats":"${hits} 条相关记录 共耗时${time} ms"}
     }
   };
 </script>
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/2/"/>
+  <link rel="canonical" href="http://localhost:4000/page/2/"/>
 
 
 
@@ -230,9 +230,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -261,392 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/一个简单的获取验证码控件的封装/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="浪漫恋星空">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="浪漫恋星空的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/12/一个简单的获取验证码控件的封装/" itemprop="url">一个简单的获取验证码控件的封装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/12/一个简单的获取验证码控件的封装/" class="leancloud_visitors" data-flag-title="一个简单的获取验证码控件的封装">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,325字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长&#58;</span>
-                
-                <span title="阅读时长">
-                  约6分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。</p>
-<h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h3><p><img src="http://upload-images.jianshu.io/upload_images/1777873-110fedabc97ea4c4.gif?imageMogr2/auto-orient/strip" alt="效果.gif"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/一个简单的获取验证码控件的封装/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="浪漫恋星空">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="浪漫恋星空的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/" itemprop="url">从零开始 一步步将自己的框架导入CocoaPods</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/" class="leancloud_visitors" data-flag-title="从零开始 一步步将自己的框架导入CocoaPods">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,173字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长&#58;</span>
-                
-                <span title="阅读时长">
-                  约4分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>对于做iOS开发的来说，不知道CocoaPods无异于耍流氓。日常开发中我们经常会使用它来管理我们的三方库。用别人的框架用得太多了，慢慢的，撸的代码越来越多，会发现自己在不知不觉间收集了很多好用的扩展，或者那天自己写出一个比较优秀的效果，会想着将这些东西分享出来。当然，我们可以将代码直接丢到GitHub之类的代码托管平台，供大家参考。某年某月某一天，你心血来潮的也想撸个框架。什么？你写了一个框架，竟然不支持CocoaPods？程序员大多数都是懒的，能用一行代码解决的事情绝不写两行，更何况CocoaPods这么好用的东西，好的框架不支持怎么行啊？这里把自己写的小东西是如何一步一步支持CocoaPods的作一个介绍。希望有需要的小伙伴能从这里看到你想要的东西。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -838,7 +491,392 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/基于RAC封装带缓存的网络请求/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/一个星形评分控件的封装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/12/一个星形评分控件的封装/" itemprop="url">一个星形评分控件的封装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/12/一个星形评分控件的封装/" class="leancloud_visitors" data-flag-title="一个星形评分控件的封装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,606字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长&#58;</span>
+                
+                <span title="阅读时长">
+                  约13分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。</p>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="http://upload-images.jianshu.io/upload_images/1777873-d5bde20cc0f48c48.gif?imageMogr2/auto-orient/strip" alt="效果图.gif"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/12/一个星形评分控件的封装/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/" itemprop="url">从零开始 一步步将自己的框架导入CocoaPods</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/" class="leancloud_visitors" data-flag-title="从零开始 一步步将自己的框架导入CocoaPods">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,173字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长&#58;</span>
+                
+                <span title="阅读时长">
+                  约4分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>对于做iOS开发的来说，不知道CocoaPods无异于耍流氓。日常开发中我们经常会使用它来管理我们的三方库。用别人的框架用得太多了，慢慢的，撸的代码越来越多，会发现自己在不知不觉间收集了很多好用的扩展，或者那天自己写出一个比较优秀的效果，会想着将这些东西分享出来。当然，我们可以将代码直接丢到GitHub之类的代码托管平台，供大家参考。某年某月某一天，你心血来潮的也想撸个框架。什么？你写了一个框架，竟然不支持CocoaPods？程序员大多数都是懒的，能用一行代码解决的事情绝不写两行，更何况CocoaPods这么好用的东西，好的框架不支持怎么行啊？这里把自己写的小东西是如何一步一步支持CocoaPods的作一个介绍。希望有需要的小伙伴能从这里看到你想要的东西。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/基于RAC封装带缓存的网络请求/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -1035,7 +1073,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/带PlaceHolder的UITextView/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/带PlaceHolder的UITextView/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -1228,7 +1266,197 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/开源一个练手的小项目/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/IQKeyboardManager导航栏上移/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/12/IQKeyboardManager导航栏上移/" itemprop="url">IQKeyboardManager导航栏上移</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/12/IQKeyboardManager导航栏上移/" class="leancloud_visitors" data-flag-title="IQKeyboardManager导航栏上移">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  280字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长&#58;</span>
+                
+                <span title="阅读时长">
+                  约1分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用IQKeyboardManager来处理项目中的文本框被遮挡的问题是一个很好的选择, 但是也因为这个三方框架自动做了太多的事情有时候会导致一些很奇怪的问题。最常见的就是当控制器带有导航栏的时候会导致导航栏上移。官方Demo中也有提供一些解决方法。最近在实现一个表单提交页的时候，在UITableViewCell中有UITextField，在使用IQKeyboardManager的过程中也发现导航栏有上移的情况。但是我看Demo中并不会出现这样的情况。后来发现，在布局UITableView的时候，是直接设置的frame为self.view.bounds，看起来并没有什么大问题，但是这样IQKeyboardManager在处理的时候会让整个View的frame都上移，导航栏也就跟着偏移了。正确的做法是让UITableView的frame从导航栏下面开始布局。像这样</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLayoutSubviews</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLayoutSubviews];</span><br><span class="line">    [<span class="keyword">self</span>.tableView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">        make.top.mas_equalTo(kTopHeight);</span><br><span class="line">        make.bottom.left.right.mas_equalTo(<span class="number">0</span>);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，导航栏就不会被顶出屏幕了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/开源一个练手的小项目/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -1431,211 +1659,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="浪漫恋星空">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="浪漫恋星空的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/" itemprop="url">Gradle构建SpringMVC框架实现App请求接口</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web基础/" itemprop="url" rel="index">
-                    <span itemprop="name">web基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/" class="leancloud_visitors" data-flag-title="Gradle构建SpringMVC框架实现App请求接口">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,774字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长&#58;</span>
-                
-                <span title="阅读时长">
-                  约11分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Gradle构建SpringMVC框架实现App请求接口"><a href="#Gradle构建SpringMVC框架实现App请求接口" class="headerlink" title="Gradle构建SpringMVC框架实现App请求接口"></a>Gradle构建SpringMVC框架实现App请求接口</h3><p>最近这段时间忙着在找工作，面试不是很多。闲着没什么事干就想着把积累的一点后台的知识理一理，虽然不一定非得做这方面的工作，但是以后的工作中，遇到一些问题可以快速的定位到。接触后台的时间很短，在上一家公司的时候也做过一些给App写接口的工作。后台那边的框架也很多都不懂，就是简单的依葫芦画瓢。遇到问题也有后台小哥帮忙解决。接下来，我就用我了解的一点后台知识，实现一个接口供App调用。</p>
-<h3 id="环境描述"><a href="#环境描述" class="headerlink" title="环境描述"></a>环境描述</h3><ul>
-<li><p>操作系统:MacOS</p>
-</li>
-<li><p>编译器:Intellij IDEA 2016</p>
-</li>
-<li><p>Java运行环境，Tomcat</p>
-</li>
-<li><p>依赖管理工具：Gradle</p>
-</li>
-<li><p>基础框架：SpringMVC</p>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/浅谈iOS中MVC/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/浅谈iOS中MVC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -2028,9 +2052,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -2067,16 +2088,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
@@ -2144,6 +2155,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
 
 
 

@@ -92,7 +92,7 @@
 <meta name="keywords" content="Gradle,SpringMVC,接口,Java,Tomcat">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Gradle构建SpringMVC框架实现App请求接口">
-<meta property="og:url" content="http://yoursite.com/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/index.html">
+<meta property="og:url" content="http://localhost:4000/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
 <meta property="og:description" content="Gradle构建SpringMVC框架实现App请求接口最近这段时间忙着在找工作，面试不是很多。闲着没什么事干就想着把积累的一点后台的知识理一理，虽然不一定非得做这方面的工作，但是以后的工作中，遇到一些问题可以快速的定位到。接触后台的时间很短，在上一家公司的时候也做过一些给App写接口的工作。后台那边的框架也很多都不懂，就是简单的依葫芦画瓢。遇到问题也有后台小哥帮忙解决。接下来，我就用我了解的一点">
 <meta property="og:locale" content="zh-Hans">
@@ -136,18 +136,18 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'PEUKKR4W7Y',
+      apiKey: '43a01739e84a106b8e53acd095eb97be',
+      indexName: 'xingkong',
       hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与 ~${query}~ 相关的内容","hits_stats":"${hits} 条相关记录 共耗时${time} ms"}
     }
   };
 </script>
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/"/>
+  <link rel="canonical" href="http://localhost:4000/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/"/>
 
 
 
@@ -249,9 +249,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -280,7 +318,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -455,7 +493,7 @@
 <p>注解的意思呢，我也解释不清楚，只知道这样写。先把这些东西知道怎么用了再慢慢的去研究下。</p>
 <p>修改了代码，我们重新启动一下服务器。还是可以正常的看到我们刚刚的页面，接下来在地址栏输入下面的地址，当然这个地址是我Demo中随意写的。它的构成也很简单，就是本机的地址加上@RequestMapping里面的东西拼接起来的。</p>
 <blockquote>
-<p><a href="http://localhost:8080/test/hello" target="_blank" rel="noopener">http://localhost:8080/test/hello</a></p>
+<p><a href="http://localhost:8080/test/hello">http://localhost:8080/test/hello</a></p>
 </blockquote>
 <p>然后，开心的敲了一下回车。我们就可以得到我们的数据了。等等，这么简单？看图：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1777873-f176b304ac06cc17.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="错误页面"><br>喜闻乐见，说好的数据呢。习惯了Xcode崩溃在main的地方，到这里，是不是感觉一脸懵逼？别急，刚刚我们虽然引入了SpringMVC框架，但是还需要在项目中作一些配置。感觉后台的东西真的太杂了，各种配置工程，反正我是很不习惯。打开Project Structure(编译器界面的右上角的地方)，找到Web Gradle模块，并点击Deployment Descriptors栏右侧的加号添加web.xml文件。如图：<br><img src="http://upload-images.jianshu.io/upload_images/1777873-ff51e71b64f9104b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建web.xml文件"><br>打开刚刚创建的web.xml文件，在该文件中添加如下映射</p>
@@ -539,8 +577,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/12/浅谈iOS中MVC/" rel="next" title="浅谈iOS中的MVC">
-                <i class="fa fa-chevron-left"></i> 浅谈iOS中的MVC
+              <a href="/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/" rel="next" title="基本排序算法的OC实现">
+                <i class="fa fa-chevron-left"></i> 基本排序算法的OC实现
               </a>
             
           </div>
@@ -549,8 +587,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/12/开源一个练手的小项目/" rel="prev" title="开源一个练手的小项目">
-                开源一个练手的小项目 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/12/iOS打包配置/" rel="prev" title="iOS打包配置">
+                iOS打包配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -805,9 +843,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -844,16 +879,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
@@ -925,6 +950,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
 
 
 
