@@ -98,7 +98,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1777873-3a4093918d42633d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1777873-0882cdd56474e656.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-03-15T10:12:30.713Z">
+<meta property="og:updated_time" content="2018-03-15T10:16:42.467Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UITableView实现排序">
 <meta name="twitter:description" content="写在前面最近无聊在仿写网易云音乐，在实现首页的调整栏目排序功能的时候踩了点小坑。 UITableView实现排序1.将tableView设为可以编辑模式 1[self.tableView setEditing:YES animated:YES]; 2.实现移动的代理方法   - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPa">
@@ -460,6 +460,7 @@
     return UITableViewCellEditingStyleNone;
 }
 </code></pre>
+<a id="more"></a>
 <p>实现了这个代理方法之后，左边默认编辑状态下的删除按钮没有了。虽然按钮没了，但是会有部分的留白。<br><img src="https://upload-images.jianshu.io/upload_images/1777873-3a4093918d42633d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果图"><br>通过查看视图层级发现<br><img src="https://upload-images.jianshu.io/upload_images/1777873-0882cdd56474e656.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2018-03-15 下午6.01.20.png"><br>虽然默认的删除按钮不显示了，但是还占着布局。然后尝试着解决，首先想到的是通过自定义cell，然后遍历cell的子视图把最左边的控件从cell上移除了，这样操作之后发现，视图移除掉了之后，cell的contentView还是有留白。然后我尝试着将label直接添加到cell上，然后发现在显示上正常了。但是这个解决方法说服不了自己。心想苹果爸爸不会连这么简单的需求都没有考虑到吧，然后又查看了一次代理方法。果然    </p>
 <pre><code class="oc">- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
