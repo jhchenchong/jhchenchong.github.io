@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS,UITableView," />
 
 
 
@@ -88,16 +88,21 @@
 
 
 
-<meta name="description" content="不忘初心 方得始终初心易得 始终难守">
-<meta property="og:type" content="website">
-<meta property="og:title" content="浪漫恋星空的博客">
-<meta property="og:url" content="http://localhost:4000/tags/自定义视图/index.html">
+<meta name="description" content="写在前面最近无聊在仿写网易云音乐，在实现首页的调整栏目排序功能的时候踩了点小坑。 UITableView实现排序1.将tableView设为可以编辑模式 1[self.tableView setEditing:YES animated:YES]; 2.实现移动的代理方法   - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPa">
+<meta name="keywords" content="iOS,UITableView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UITableView实现排序">
+<meta property="og:url" content="http://localhost:4000/2018/03/15/UITableView实现排序/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
-<meta property="og:description" content="不忘初心 方得始终初心易得 始终难守">
+<meta property="og:description" content="写在前面最近无聊在仿写网易云音乐，在实现首页的调整栏目排序功能的时候踩了点小坑。 UITableView实现排序1.将tableView设为可以编辑模式 1[self.tableView setEditing:YES animated:YES]; 2.实现移动的代理方法   - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPa">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1777873-3a4093918d42633d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1777873-0882cdd56474e656.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-03-15T10:12:30.713Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浪漫恋星空的博客">
-<meta name="twitter:description" content="不忘初心 方得始终初心易得 始终难守">
+<meta name="twitter:title" content="UITableView实现排序">
+<meta name="twitter:description" content="写在前面最近无聊在仿写网易云音乐，在实现首页的调整栏目排序功能的时候踩了点小坑。 UITableView实现排序1.将tableView设为可以编辑模式 1[self.tableView setEditing:YES animated:YES]; 2.实现移动的代理方法   - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPa">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1777873-3a4093918d42633d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -127,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://localhost:4000/tags/自定义视图/"/>
+  <link rel="canonical" href="http://localhost:4000/2018/03/15/UITableView实现排序/"/>
 
 
 
 
 
-  <title>标签: 自定义视图 | 浪漫恋星空的博客</title>
+  <title>UITableView实现排序 | 浪漫恋星空的博客</title>
   
 
 
@@ -152,7 +157,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -294,82 +299,244 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>自定义视图<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/03/15/UITableView实现排序/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/01/12/一个星形评分控件的封装/" itemprop="url">
-              
-                <span itemprop="name">一个星形评分控件的封装</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">UITableView实现排序</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-12T17:12:22+08:00"
-              content="2018-01-12" >
-          01-12
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T18:11:58+08:00">
+                2018-03-15
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/03/15/UITableView实现排序/" class="leancloud_visitors" data-flag-title="UITableView实现排序">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  396字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长&#58;</span>
+                
+                <span title="阅读时长">
+                  约1分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>最近无聊在仿写网易云音乐，在实现首页的调整栏目排序功能的时候踩了点小坑。</p>
+<h3 id="UITableView实现排序"><a href="#UITableView实现排序" class="headerlink" title="UITableView实现排序"></a>UITableView实现排序</h3><p>1.将tableView设为可以编辑模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[self.tableView setEditing:YES animated:YES];</span><br></pre></td></tr></table></figure>
+<p>2.实现移动的代理方法  </p>
+<pre><code class="oc">- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/12/一个简单的获取验证码控件的封装/" itemprop="url">
-              
-                <span itemprop="name">一个简单的获取验证码控件的封装</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-12T17:12:22+08:00"
-              content="2018-01-12" >
-          01-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+}
+</code></pre>
+<p>做完这两步操作，发现cell是可以进行排序了。但是发现cell的左边有一个默认的执行删除操作的按钮。看了一下Api又发现了一个代理方法  </p>
+<pre><code class="oc">- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleNone;
+}
+</code></pre>
+<p>实现了这个代理方法之后，左边默认编辑状态下的删除按钮没有了。虽然按钮没了，但是会有部分的留白。<br><img src="https://upload-images.jianshu.io/upload_images/1777873-3a4093918d42633d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果图"><br>通过查看视图层级发现<br><img src="https://upload-images.jianshu.io/upload_images/1777873-0882cdd56474e656.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2018-03-15 下午6.01.20.png"><br>虽然默认的删除按钮不显示了，但是还占着布局。然后尝试着解决，首先想到的是通过自定义cell，然后遍历cell的子视图把最左边的控件从cell上移除了，这样操作之后发现，视图移除掉了之后，cell的contentView还是有留白。然后我尝试着将label直接添加到cell上，然后发现在显示上正常了。但是这个解决方法说服不了自己。心想苹果爸爸不会连这么简单的需求都没有考虑到吧，然后又查看了一次代理方法。果然    </p>
+<pre><code class="oc">- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+</code></pre>
+<p>实现了这个代理方法之后，左边的留白就没有了。</p>
 
       
     </div>
+    
+    
+    
 
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
+          
+            <a href="/tags/UITableView/" rel="tag"><i class="fa fa-tag"></i> UITableView</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/12/星空回忆里的那些点滴/" rel="next" title="星空回忆里的那些点滴">
+                <i class="fa fa-chevron-left"></i> 星空回忆里的那些点滴
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -377,6 +544,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzI1Ni85ODEz"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -397,8 +573,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -479,6 +664,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UITableView实现排序"><span class="nav-number">2.</span> <span class="nav-text">UITableView实现排序</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -630,6 +831,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -658,6 +863,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

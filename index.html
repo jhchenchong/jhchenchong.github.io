@@ -309,6 +309,215 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/03/15/UITableView实现排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/15/UITableView实现排序/" itemprop="url">UITableView实现排序</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T18:11:58+08:00">
+                2018-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/03/15/UITableView实现排序/" class="leancloud_visitors" data-flag-title="UITableView实现排序">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  396字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长&#58;</span>
+                
+                <span title="阅读时长">
+                  约1分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>最近无聊在仿写网易云音乐，在实现首页的调整栏目排序功能的时候踩了点小坑。</p>
+<h3 id="UITableView实现排序"><a href="#UITableView实现排序" class="headerlink" title="UITableView实现排序"></a>UITableView实现排序</h3><p>1.将tableView设为可以编辑模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[self.tableView setEditing:YES animated:YES];</span><br></pre></td></tr></table></figure>
+<p>2.实现移动的代理方法  </p>
+<pre><code class="oc">- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+
+}
+</code></pre>
+<p>做完这两步操作，发现cell是可以进行排序了。但是发现cell的左边有一个默认的执行删除操作的按钮。看了一下Api又发现了一个代理方法  </p>
+<pre><code class="oc">- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleNone;
+}
+</code></pre>
+<p>实现了这个代理方法之后，左边默认编辑状态下的删除按钮没有了。虽然按钮没了，但是会有部分的留白。<br><img src="https://upload-images.jianshu.io/upload_images/1777873-3a4093918d42633d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果图"><br>通过查看视图层级发现<br><img src="https://upload-images.jianshu.io/upload_images/1777873-0882cdd56474e656.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2018-03-15 下午6.01.20.png"><br>虽然默认的删除按钮不显示了，但是还占着布局。然后尝试着解决，首先想到的是通过自定义cell，然后遍历cell的子视图把最左边的控件从cell上移除了，这样操作之后发现，视图移除掉了之后，cell的contentView还是有留白。然后我尝试着将label直接添加到cell上，然后发现在显示上正常了。但是这个解决方法说服不了自己。心想苹果爸爸不会连这么简单的需求都没有考虑到吧，然后又查看了一次代理方法。果然    </p>
+<pre><code class="oc">- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+</code></pre>
+<p>实现了这个代理方法之后，左边的留白就没有了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/星空回忆里的那些点滴/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -504,7 +713,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/IQKeyboardManager导航栏上移/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/iOS打包配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -523,7 +732,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/12/IQKeyboardManager导航栏上移/" itemprop="url">IQKeyboardManager导航栏上移</a></h1>
+                <a class="post-title-link" href="/2018/01/12/iOS打包配置/" itemprop="url">iOS打包配置</a></h1>
         
 
         <div class="post-meta">
@@ -575,7 +784,7 @@
 
           
           
-             <span id="/2018/01/12/IQKeyboardManager导航栏上移/" class="leancloud_visitors" data-flag-title="IQKeyboardManager导航栏上移">
+             <span id="/2018/01/12/iOS打包配置/" class="leancloud_visitors" data-flag-title="iOS打包配置">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -600,7 +809,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  280字
+                  1,174字
                 </span>
               
 
@@ -616,7 +825,7 @@
                   <span class="post-meta-item-text">阅读时长&#58;</span>
                 
                 <span title="阅读时长">
-                  约1分钟
+                  约4分钟
                 </span>
               
             </div>
@@ -638,12 +847,229 @@
 
       
         
-          
-            <p>使用IQKeyboardManager来处理项目中的文本框被遮挡的问题是一个很好的选择, 但是也因为这个三方框架自动做了太多的事情有时候会导致一些很奇怪的问题。最常见的就是当控制器带有导航栏的时候会导致导航栏上移。官方Demo中也有提供一些解决方法。最近在实现一个表单提交页的时候，在UITableViewCell中有UITextField，在使用IQKeyboardManager的过程中也发现导航栏有上移的情况。但是我看Demo中并不会出现这样的情况。后来发现，在布局UITableView的时候，是直接设置的frame为self.view.bounds，看起来并没有什么大问题，但是这样IQKeyboardManager在处理的时候会让整个View的frame都上移，导航栏也就跟着偏移了。正确的做法是让UITableView的frame从导航栏下面开始布局。像这样</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLayoutSubviews</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLayoutSubviews];</span><br><span class="line">    [<span class="keyword">self</span>.tableView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">        make.top.mas_equalTo(kTopHeight);</span><br><span class="line">        make.bottom.left.right.mas_equalTo(<span class="number">0</span>);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样，导航栏就不会被顶出屏幕了。</p>
+          <h3 id="一-开发账号介绍"><a href="#一-开发账号介绍" class="headerlink" title="一. 开发账号介绍"></a>一. 开发账号介绍</h3><p>苹果的开发者账号主要分为三类：</p>
+<ul>
+<li>个人（Individual）</li>
+<li>组织（Organizations）</li>
+<li>教育机构（Educational Institutions）</li>
+</ul>
+<p>其中“组织”中又分为2个小类：</p>
+<ul>
+<li>公司（Company）</li>
+<li>企业（Enterprise）</li>
+</ul>
+<p>我们经常最关注的是个人、公司、企业这3类：</p>
+<ul>
+<li>个人：个人账号只支持单人开发，即一个主体账号，可以申请升级为公司帐号。</li>
+<li>公司：公司账号和企业账号支持协作开发，可邀请其他人加入团队，比个人多一些帐号管理的设置，可设置多个Apple ID，分4种管理级别的权限。</li>
+<li>企业：企业账号大多用于内部分发测试。跟前面两种账号不同的是，个人和公司账号开发的应用可以上线App Store，企业账号则不能。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/12/iOS打包配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/OC实现有趣的过山车动画/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/12/OC实现有趣的过山车动画/" itemprop="url">有趣的过山车动画</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/12/OC实现有趣的过山车动画/" class="leancloud_visitors" data-flag-title="有趣的过山车动画">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,498字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长&#58;</span>
+                
+                <span title="阅读时长">
+                  约15分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在网上看到一个有趣的过山车动画，有大神用swift实现了。我参照着用OC实现了一遍，我们不生产代码，只是代码的搬运工。</p>
+<p>动画如图所示：<br><img src="http://upload-images.jianshu.io/upload_images/1777873-7cecaf5752f19324.gif?imageMogr2/auto-orient/strip" alt="过山车动画.gif"></p>
+<h3 id="实现动画主要使用到的类："><a href="#实现动画主要使用到的类：" class="headerlink" title="实现动画主要使用到的类："></a>实现动画主要使用到的类：</h3><ul>
+<li>CAShapeLayer</li>
+<li>CAGradientLayer</li>
+<li>CAKeyframeAnimation</li>
+</ul>
+<h3 id="实现思路："><a href="#实现思路：" class="headerlink" title="实现思路："></a>实现思路：</h3><p>渐变的背景用CAGradientLayer实现，山峰，草坪和轨道利用CAShapeLayer配合UIBezierPath实现，云，树和大地都是图片资源，直接通过设置CALayer的contents实现。动画实现使用的是CAKeyframeAnimation。代码如下：<a href="https://github.com/jhchenchong/rollerCoasterAnimation.git" target="_blank" rel="noopener">过山车动画OC</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/12/OC实现有趣的过山车动画/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1074,205 +1500,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/OC实现有趣的过山车动画/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="浪漫恋星空">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="浪漫恋星空的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/12/OC实现有趣的过山车动画/" itemprop="url">有趣的过山车动画</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/12/OC实现有趣的过山车动画/" class="leancloud_visitors" data-flag-title="有趣的过山车动画">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,498字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长&#58;</span>
-                
-                <span title="阅读时长">
-                  约15分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在网上看到一个有趣的过山车动画，有大神用swift实现了。我参照着用OC实现了一遍，我们不生产代码，只是代码的搬运工。</p>
-<p>动画如图所示：<br><img src="http://upload-images.jianshu.io/upload_images/1777873-7cecaf5752f19324.gif?imageMogr2/auto-orient/strip" alt="过山车动画.gif"></p>
-<h3 id="实现动画主要使用到的类："><a href="#实现动画主要使用到的类：" class="headerlink" title="实现动画主要使用到的类："></a>实现动画主要使用到的类：</h3><ul>
-<li>CAShapeLayer</li>
-<li>CAGradientLayer</li>
-<li>CAKeyframeAnimation</li>
-</ul>
-<h3 id="实现思路："><a href="#实现思路：" class="headerlink" title="实现思路："></a>实现思路：</h3><p>渐变的背景用CAGradientLayer实现，山峰，草坪和轨道利用CAShapeLayer配合UIBezierPath实现，云，树和大地都是图片资源，直接通过设置CALayer的contents实现。动画实现使用的是CAKeyframeAnimation。代码如下：<a href="https://github.com/jhchenchong/rollerCoasterAnimation.git" target="_blank" rel="noopener">过山车动画OC</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/OC实现有趣的过山车动画/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/iOS动态修改状态栏的颜色/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1414,200 +1641,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/12/iOS动态修改状态栏的颜色/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/UITableViewCell嵌套UIWebView高度自适应，设置字号，拦截图片点击事件。/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="浪漫恋星空">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="浪漫恋星空的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/12/UITableViewCell嵌套UIWebView高度自适应，设置字号，拦截图片点击事件。/" itemprop="url">UITableViewCell嵌套UIWebView高度自适应 设置字号 拦截图片点击事件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/12/UITableViewCell嵌套UIWebView高度自适应，设置字号，拦截图片点击事件。/" class="leancloud_visitors" data-flag-title="UITableViewCell嵌套UIWebView高度自适应 设置字号 拦截图片点击事件">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  5,464字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长&#58;</span>
-                
-                <span title="阅读时长">
-                  约24分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在日常的开发中，在UITableViewCell中嵌套UIWebView应该算是一个很常见的需求。通常，UITableViewCell要去自适应UIWebView的高度，拦截html中的图片点击事件，以及一些新闻类App会改变正文的字号或者字体。这里简单的把这几个需求实现一下。</p>
-<p>最终完成的效果如图(文章结尾处提供源码下载地址)：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1777873-849506c6a9483fd9.gif?imageMogr2/auto-orient/strip" alt="效果图.gif"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/UITableViewCell嵌套UIWebView高度自适应，设置字号，拦截图片点击事件。/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1857,7 +1890,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/一个星形评分控件的封装/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/UITableViewCell嵌套UIWebView高度自适应，设置字号，拦截图片点击事件。/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -1876,7 +1909,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/12/一个星形评分控件的封装/" itemprop="url">一个星形评分控件的封装</a></h1>
+                <a class="post-title-link" href="/2018/01/12/UITableViewCell嵌套UIWebView高度自适应，设置字号，拦截图片点击事件。/" itemprop="url">UITableViewCell嵌套UIWebView高度自适应 设置字号 拦截图片点击事件</a></h1>
         
 
         <div class="post-meta">
@@ -1928,7 +1961,7 @@
 
           
           
-             <span id="/2018/01/12/一个星形评分控件的封装/" class="leancloud_visitors" data-flag-title="一个星形评分控件的封装">
+             <span id="/2018/01/12/UITableViewCell嵌套UIWebView高度自适应，设置字号，拦截图片点击事件。/" class="leancloud_visitors" data-flag-title="UITableViewCell嵌套UIWebView高度自适应 设置字号 拦截图片点击事件">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1953,7 +1986,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,606字
+                  5,464字
                 </span>
               
 
@@ -1969,7 +2002,7 @@
                   <span class="post-meta-item-text">阅读时长&#58;</span>
                 
                 <span title="阅读时长">
-                  约13分钟
+                  约24分钟
                 </span>
               
             </div>
@@ -1991,11 +2024,12 @@
 
       
         
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>很久没有更新简书了，这段时间一直在忙着撸代码。项目的事情暂时总算是告一段落了，打开简书一看，整个六月份一篇都没有写。本来还想强行解释一波的，算了，总结一句话，还是懒。新项目设计妹纸正在做设计稿，看到项目中有一个星形评分的控件，闲来无事，找了几个网上的看了一下，都不是很满足自己的需求，所以自己动手实现了一下。</p>
-<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="http://upload-images.jianshu.io/upload_images/1777873-d5bde20cc0f48c48.gif?imageMogr2/auto-orient/strip" alt="效果图.gif"></p>
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在日常的开发中，在UITableViewCell中嵌套UIWebView应该算是一个很常见的需求。通常，UITableViewCell要去自适应UIWebView的高度，拦截html中的图片点击事件，以及一些新闻类App会改变正文的字号或者字体。这里简单的把这几个需求实现一下。</p>
+<p>最终完成的效果如图(文章结尾处提供源码下载地址)：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-849506c6a9483fd9.gif?imageMogr2/auto-orient/strip" alt="效果图.gif"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/一个星形评分控件的封装/#more" rel="contents">
+            <a class="btn" href="/2018/01/12/UITableViewCell嵌套UIWebView高度自适应，设置字号，拦截图片点击事件。/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2295,7 +2329,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2317,7 +2351,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2385,7 +2419,7 @@
     
       <span class="post-meta-item-text">博客字数总数&#58;</span>
     
-    <span title="博客字数总数">25.5k</span>
+    <span title="博客字数总数">25.9k</span>
   
 </div>
 
