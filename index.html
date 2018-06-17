@@ -920,6 +920,201 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/iOS中的传值方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/12/iOS中的传值方式/" itemprop="url">iOS中的传值方式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/12/iOS中的传值方式/" class="leancloud_visitors" data-flag-title="iOS中的传值方式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,908字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长&#58;</span>
+                
+                <span title="阅读时长">
+                  约8分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在日常开发过程中，我们经常会遇到值传递。这里，介绍几种iOS开发中常见的传值方式。</p>
+<h3 id="1-属性传值"><a href="#1-属性传值" class="headerlink" title="1.属性传值"></a>1.属性传值</h3><p>属性传值是iOS中最为常见的正向传值方式，假定我们现在有这样一个需求，在A控制器点击按钮，将按钮的标题显示在B控制器的label上。首先，我们创建两个控制器CCFirstViewController和CCSecondViewController,在CCSecondViewController.h中声明一个属性</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">CCSecondViewController</span> : <span class="title">UIViewController</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSString</span> *buttonTitleString;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">CCSecondViewController</span></span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">CCSecondViewController</span></span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.view.backgroundColor = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UILabel</span> *label = [[<span class="built_in">UILabel</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">30</span>)];</span><br><span class="line">    </span><br><span class="line">    label.center = <span class="keyword">self</span>.view.center;</span><br><span class="line">    </span><br><span class="line">    label.text = <span class="keyword">self</span>.buttonTitleString;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span>.view addSubview:label];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event &#123;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span> dismissViewControllerAnimated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/12/iOS中的传值方式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/Safe-Area-Layout-Guide/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1060,210 +1255,6 @@
 <p><img src="http://upload-images.jianshu.io/upload_images/1777873-5f24e00494b824d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2017-09-20 下午3.25.30.png"></p>
 
           
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="浪漫恋星空">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="浪漫恋星空的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/" itemprop="url">Gradle构建SpringMVC框架实现App请求接口</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web基础/" itemprop="url" rel="index">
-                    <span itemprop="name">web基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/" class="leancloud_visitors" data-flag-title="Gradle构建SpringMVC框架实现App请求接口">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,774字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长&#58;</span>
-                
-                <span title="阅读时长">
-                  约11分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Gradle构建SpringMVC框架实现App请求接口"><a href="#Gradle构建SpringMVC框架实现App请求接口" class="headerlink" title="Gradle构建SpringMVC框架实现App请求接口"></a>Gradle构建SpringMVC框架实现App请求接口</h3><p>最近这段时间忙着在找工作，面试不是很多。闲着没什么事干就想着把积累的一点后台的知识理一理，虽然不一定非得做这方面的工作，但是以后的工作中，遇到一些问题可以快速的定位到。接触后台的时间很短，在上一家公司的时候也做过一些给App写接口的工作。后台那边的框架也很多都不懂，就是简单的依葫芦画瓢。遇到问题也有后台小哥帮忙解决。接下来，我就用我了解的一点后台知识，实现一个接口供App调用。</p>
-<h3 id="环境描述"><a href="#环境描述" class="headerlink" title="环境描述"></a>环境描述</h3><ul>
-<li><p>操作系统:MacOS</p>
-</li>
-<li><p>编译器:Intellij IDEA 2016</p>
-</li>
-<li><p>Java运行环境，Tomcat</p>
-</li>
-<li><p>依赖管理工具：Gradle</p>
-</li>
-<li><p>基础框架：SpringMVC</p>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1698,7 +1689,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/iOS中的传值方式/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -1717,7 +1708,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/12/iOS中的传值方式/" itemprop="url">iOS中的传值方式</a></h1>
+                <a class="post-title-link" href="/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/" itemprop="url">Gradle构建SpringMVC框架实现App请求接口</a></h1>
         
 
         <div class="post-meta">
@@ -1752,8 +1743,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
+                  <a href="/categories/web基础/" itemprop="url" rel="index">
+                    <span itemprop="name">web基础</span>
                   </a>
                 </span>
 
@@ -1769,7 +1760,7 @@
 
           
           
-             <span id="/2018/01/12/iOS中的传值方式/" class="leancloud_visitors" data-flag-title="iOS中的传值方式">
+             <span id="/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/" class="leancloud_visitors" data-flag-title="Gradle构建SpringMVC框架实现App请求接口">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1794,7 +1785,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,908字
+                  2,774字
                 </span>
               
 
@@ -1810,7 +1801,7 @@
                   <span class="post-meta-item-text">阅读时长&#58;</span>
                 
                 <span title="阅读时长">
-                  约8分钟
+                  约11分钟
                 </span>
               
             </div>
@@ -1832,13 +1823,22 @@
 
       
         
-          <p>在日常开发过程中，我们经常会遇到值传递。这里，介绍几种iOS开发中常见的传值方式。</p>
-<h3 id="1-属性传值"><a href="#1-属性传值" class="headerlink" title="1.属性传值"></a>1.属性传值</h3><p>属性传值是iOS中最为常见的正向传值方式，假定我们现在有这样一个需求，在A控制器点击按钮，将按钮的标题显示在B控制器的label上。首先，我们创建两个控制器CCFirstViewController和CCSecondViewController,在CCSecondViewController.h中声明一个属性</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">CCSecondViewController</span> : <span class="title">UIViewController</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSString</span> *buttonTitleString;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">CCSecondViewController</span></span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">CCSecondViewController</span></span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.view.backgroundColor = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UILabel</span> *label = [[<span class="built_in">UILabel</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">30</span>)];</span><br><span class="line">    </span><br><span class="line">    label.center = <span class="keyword">self</span>.view.center;</span><br><span class="line">    </span><br><span class="line">    label.text = <span class="keyword">self</span>.buttonTitleString;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span>.view addSubview:label];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event &#123;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span> dismissViewControllerAnimated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+          <h3 id="Gradle构建SpringMVC框架实现App请求接口"><a href="#Gradle构建SpringMVC框架实现App请求接口" class="headerlink" title="Gradle构建SpringMVC框架实现App请求接口"></a>Gradle构建SpringMVC框架实现App请求接口</h3><p>最近这段时间忙着在找工作，面试不是很多。闲着没什么事干就想着把积累的一点后台的知识理一理，虽然不一定非得做这方面的工作，但是以后的工作中，遇到一些问题可以快速的定位到。接触后台的时间很短，在上一家公司的时候也做过一些给App写接口的工作。后台那边的框架也很多都不懂，就是简单的依葫芦画瓢。遇到问题也有后台小哥帮忙解决。接下来，我就用我了解的一点后台知识，实现一个接口供App调用。</p>
+<h3 id="环境描述"><a href="#环境描述" class="headerlink" title="环境描述"></a>环境描述</h3><ul>
+<li><p>操作系统:MacOS</p>
+</li>
+<li><p>编译器:Intellij IDEA 2016</p>
+</li>
+<li><p>Java运行环境，Tomcat</p>
+</li>
+<li><p>依赖管理工具：Gradle</p>
+</li>
+<li><p>基础框架：SpringMVC</p>
+</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/iOS中的传值方式/#more" rel="contents">
+            <a class="btn" href="/2018/01/12/Gradle构建SpringMVC框架实现App请求接口/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
