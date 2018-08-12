@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="iOS,UITableView," />
+  <meta name="keywords" content="iOS,Application Loader," />
 
 
 
@@ -88,21 +88,18 @@
 
 
 
-<meta name="description" content="写在前面最近无聊在仿写网易云音乐，在实现首页的调整栏目排序功能的时候踩了点小坑。 UITableView实现排序1.将tableView设为可以编辑模式 1[self.tableView setEditing:YES animated:YES]; 2.实现移动的代理方法   - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPa">
-<meta name="keywords" content="iOS,UITableView">
+<meta name="description" content="iTunes connect error “To use this application, you must first sign in to iTunes Connect and sign the relevant contracts.”今天在使用Application Loader构建版本的时候，无法登录账号并且报错iTunes connect error “To use this appl">
+<meta name="keywords" content="iOS,Application Loader">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UITableView实现排序">
-<meta property="og:url" content="http://localhost:4000/2018/03/15/UITableView实现排序/index.html">
+<meta property="og:title" content="iTunes connect error">
+<meta property="og:url" content="http://localhost:4000/2018/06/17/ApplicationLoader无法登录的问题/index.html">
 <meta property="og:site_name" content="浪漫恋星空的博客">
-<meta property="og:description" content="写在前面最近无聊在仿写网易云音乐，在实现首页的调整栏目排序功能的时候踩了点小坑。 UITableView实现排序1.将tableView设为可以编辑模式 1[self.tableView setEditing:YES animated:YES]; 2.实现移动的代理方法   - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPa">
+<meta property="og:description" content="iTunes connect error “To use this application, you must first sign in to iTunes Connect and sign the relevant contracts.”今天在使用Application Loader构建版本的时候，无法登录账号并且报错iTunes connect error “To use this appl">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1777873-3a4093918d42633d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1777873-0882cdd56474e656.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-03-16T08:40:12.088Z">
+<meta property="og:updated_time" content="2018-08-12T07:29:06.421Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UITableView实现排序">
-<meta name="twitter:description" content="写在前面最近无聊在仿写网易云音乐，在实现首页的调整栏目排序功能的时候踩了点小坑。 UITableView实现排序1.将tableView设为可以编辑模式 1[self.tableView setEditing:YES animated:YES]; 2.实现移动的代理方法   - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPa">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1777873-3a4093918d42633d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="iTunes connect error">
+<meta name="twitter:description" content="iTunes connect error “To use this application, you must first sign in to iTunes Connect and sign the relevant contracts.”今天在使用Application Loader构建版本的时候，无法登录账号并且报错iTunes connect error “To use this appl">
 
 
 
@@ -132,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://localhost:4000/2018/03/15/UITableView实现排序/"/>
+  <link rel="canonical" href="http://localhost:4000/2018/06/17/ApplicationLoader无法登录的问题/"/>
 
 
 
 
 
-  <title>UITableView实现排序 | 浪漫恋星空的博客</title>
+  <title>iTunes connect error | 浪漫恋星空的博客</title>
   
 
 
@@ -313,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/03/15/UITableView实现排序/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/06/17/ApplicationLoader无法登录的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -330,7 +327,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">UITableView实现排序</h1>
+          <h1 class="post-title" itemprop="name headline">iTunes connect error</h1>
         
 
         <div class="post-meta">
@@ -342,8 +339,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T18:11:58+08:00">
-                2018-03-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-17T17:56:51+08:00">
+                2018-06-17
               </time>
             
 
@@ -382,7 +379,7 @@
 
           
           
-             <span id="/2018/03/15/UITableView实现排序/" class="leancloud_visitors" data-flag-title="UITableView实现排序">
+             <span id="/2018/06/17/ApplicationLoader无法登录的问题/" class="leancloud_visitors" data-flag-title="iTunes connect error">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -407,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  396字
+                  167字
                 </span>
               
 
@@ -444,29 +441,9 @@
       
 
       
-        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>最近无聊在仿写网易云音乐，在实现首页的调整栏目排序功能的时候踩了点小坑。</p>
-<h3 id="UITableView实现排序"><a href="#UITableView实现排序" class="headerlink" title="UITableView实现排序"></a>UITableView实现排序</h3><p>1.将tableView设为可以编辑模式</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">self</span>.tableView setEditing:<span class="literal">YES</span> animated:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
-<p>2.实现移动的代理方法  </p>
-<pre><code class="objc">- (<span class="built_in">BOOL</span>)tableView:(<span class="built_in">UITableView</span> *)tableView canMoveRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath {
-    <span class="keyword">return</span> <span class="literal">YES</span>;
-}
-- (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView moveRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)sourceIndexPath toIndexPath:(<span class="built_in">NSIndexPath</span> *)destinationIndexPath {
-
-}
-</code></pre>
-<p>做完这两步操作，发现cell是可以进行排序了。但是发现cell的左边有一个默认的执行删除操作的按钮。看了一下Api又发现了一个代理方法  </p>
-<pre><code class="objc">- (<span class="built_in">UITableViewCellEditingStyle</span>)tableView:(<span class="built_in">UITableView</span> *)tableView editingStyleForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath {
-    <span class="keyword">return</span> <span class="built_in">UITableViewCellEditingStyleNone</span>;
-}
-</code></pre>
-<a id="more"></a>
-<p>实现了这个代理方法之后，左边默认编辑状态下的删除按钮没有了。虽然按钮没了，但是会有部分的留白。<br><img src="https://upload-images.jianshu.io/upload_images/1777873-3a4093918d42633d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果图"><br>通过查看视图层级发现<br><img src="https://upload-images.jianshu.io/upload_images/1777873-0882cdd56474e656.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2018-03-15 下午6.01.20.png"><br>虽然默认的删除按钮不显示了，但是还占着布局。然后尝试着解决，首先想到的是通过自定义cell，然后遍历cell的子视图把最左边的控件从cell上移除了，这样操作之后发现，视图移除掉了之后，cell的contentView还是有留白。然后我尝试着将label直接添加到cell上，然后发现在显示上正常了。但是这个解决方法说服不了自己。心想苹果爸爸不会连这么简单的需求都没有考虑到吧，然后又查看了一次代理方法。果然    </p>
-<pre><code class="objc">- (<span class="built_in">BOOL</span>)tableView:(<span class="built_in">UITableView</span> *)tableView shouldIndentWhileEditingRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath {
-    <span class="keyword">return</span> <span class="literal">NO</span>;
-}
-</code></pre>
-<p>实现了这个代理方法之后，左边的留白就没有了。</p>
+        <h3 id="iTunes-connect-error-“To-use-this-application-you-must-first-sign-in-to-iTunes-Connect-and-sign-the-relevant-contracts-”"><a href="#iTunes-connect-error-“To-use-this-application-you-must-first-sign-in-to-iTunes-Connect-and-sign-the-relevant-contracts-”" class="headerlink" title="iTunes connect error “To use this application, you must first sign in to iTunes Connect and sign the relevant contracts.”"></a>iTunes connect error “To use this application, you must first sign in to iTunes Connect and sign the relevant contracts.”</h3><p>今天在使用Application Loader构建版本的时候，无法登录账号并且报错iTunes connect error “To use this application, you must first sign in to iTunes Connect and sign the relevant contracts.”</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>Don’t try to launch Application Loader from Finder or desktop. Juste open it from Xcode (since last update) : Xcode =&gt; Open Developer Tool.</p>
+<p>There you’ll be asked to accept some terms (prob due to new GDPR) not from itunes connect as they WRONGLY prompt you …<br><a href="https://stackoverflow.com/questions/50624619/itunes-connect-error-to-use-this-application-you-must-first-sign-in-to-itunes" target="_blank" rel="noopener">答案转自</a><br>简单的来说，就是不要从finder或者桌面等其他方式启动Application Loader，直接从Xcode启动！这个时候会让你同意一个协议，点击同意就好了。</p>
 
       
     </div>
@@ -496,7 +473,7 @@
           
             <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
           
-            <a href="/tags/UITableView/" rel="tag"><i class="fa fa-tag"></i> UITableView</a>
+            <a href="/tags/Application-Loader/" rel="tag"><i class="fa fa-tag"></i> Application Loader</a>
           
         </div>
       
@@ -509,8 +486,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/12/星空回忆里的那些点滴/" rel="next" title="星空回忆里的那些点滴">
-                <i class="fa fa-chevron-left"></i> 星空回忆里的那些点滴
+              <a href="/2018/03/15/UITableView实现排序/" rel="next" title="UITableView实现排序">
+                <i class="fa fa-chevron-left"></i> UITableView实现排序
               </a>
             
           </div>
@@ -518,10 +495,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/17/ApplicationLoader无法登录的问题/" rel="prev" title="iTunes connect error">
-                iTunes connect error <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -679,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UITableView实现排序"><span class="nav-number">2.</span> <span class="nav-text">UITableView实现排序</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#iTunes-connect-error-“To-use-this-application-you-must-first-sign-in-to-iTunes-Connect-and-sign-the-relevant-contracts-”"><span class="nav-number">1.</span> <span class="nav-text">iTunes connect error “To use this application, you must first sign in to iTunes Connect and sign the relevant contracts.”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a></li></ol></div>
             
 
           </div>
