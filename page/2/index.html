@@ -513,196 +513,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/IQKeyboardManager导航栏上移/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="浪漫恋星空">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="浪漫恋星空的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/12/IQKeyboardManager导航栏上移/" itemprop="url">IQKeyboardManager导航栏上移</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/12/IQKeyboardManager导航栏上移/" class="leancloud_visitors" data-flag-title="IQKeyboardManager导航栏上移">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  280字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长&#58;</span>
-                
-                <span title="阅读时长">
-                  约1分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>使用IQKeyboardManager来处理项目中的文本框被遮挡的问题是一个很好的选择, 但是也因为这个三方框架自动做了太多的事情有时候会导致一些很奇怪的问题。最常见的就是当控制器带有导航栏的时候会导致导航栏上移。官方Demo中也有提供一些解决方法。最近在实现一个表单提交页的时候，在UITableViewCell中有UITextField，在使用IQKeyboardManager的过程中也发现导航栏有上移的情况。但是我看Demo中并不会出现这样的情况。后来发现，在布局UITableView的时候，是直接设置的frame为self.view.bounds，看起来并没有什么大问题，但是这样IQKeyboardManager在处理的时候会让整个View的frame都上移，导航栏也就跟着偏移了。正确的做法是让UITableView的frame从导航栏下面开始布局。像这样</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLayoutSubviews</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLayoutSubviews];</span><br><span class="line">    [<span class="keyword">self</span>.tableView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">        make.top.mas_equalTo(kTopHeight);</span><br><span class="line">        make.bottom.left.right.mas_equalTo(<span class="number">0</span>);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样，导航栏就不会被顶出屏幕了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/一个星形评分控件的封装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -896,7 +706,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/带PlaceHolder的UITextView/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/一个简单的获取验证码控件的封装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -915,7 +725,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/12/带PlaceHolder的UITextView/" itemprop="url">带PlaceHolder的UITextView</a></h1>
+                <a class="post-title-link" href="/2018/01/12/一个简单的获取验证码控件的封装/" itemprop="url">一个简单的获取验证码控件的封装</a></h1>
         
 
         <div class="post-meta">
@@ -967,7 +777,7 @@
 
           
           
-             <span id="/2018/01/12/带PlaceHolder的UITextView/" class="leancloud_visitors" data-flag-title="带PlaceHolder的UITextView">
+             <span id="/2018/01/12/一个简单的获取验证码控件的封装/" class="leancloud_visitors" data-flag-title="一个简单的获取验证码控件的封装">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -992,7 +802,392 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  363字
+                  1,325字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长&#58;</span>
+                
+                <span title="阅读时长">
+                  约6分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。</p>
+<h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h3><p><img src="http://upload-images.jianshu.io/upload_images/1777873-110fedabc97ea4c4.gif?imageMogr2/auto-orient/strip" alt="效果.gif"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/12/一个简单的获取验证码控件的封装/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/" itemprop="url">从零开始 一步步将自己的框架导入CocoaPods</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/" class="leancloud_visitors" data-flag-title="从零开始 一步步将自己的框架导入CocoaPods">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,173字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长&#58;</span>
+                
+                <span title="阅读时长">
+                  约4分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>对于做iOS开发的来说，不知道CocoaPods无异于耍流氓。日常开发中我们经常会使用它来管理我们的三方库。用别人的框架用得太多了，慢慢的，撸的代码越来越多，会发现自己在不知不觉间收集了很多好用的扩展，或者那天自己写出一个比较优秀的效果，会想着将这些东西分享出来。当然，我们可以将代码直接丢到GitHub之类的代码托管平台，供大家参考。某年某月某一天，你心血来潮的也想撸个框架。什么？你写了一个框架，竟然不支持CocoaPods？程序员大多数都是懒的，能用一行代码解决的事情绝不写两行，更何况CocoaPods这么好用的东西，好的框架不支持怎么行啊？这里把自己写的小东西是如何一步一步支持CocoaPods的作一个介绍。希望有需要的小伙伴能从这里看到你想要的东西。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/" itemprop="url">基本排序算法的OC实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/" class="leancloud_visitors" data-flag-title="基本排序算法的OC实现">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  412字
                 </span>
               
 
@@ -1030,11 +1225,10 @@
 
       
         
-          <h3 id="带PlaceHolder的UITextView"><a href="#带PlaceHolder的UITextView" class="headerlink" title="带PlaceHolder的UITextView"></a>带PlaceHolder的UITextView</h3><p>在日常开发中，用户反馈界面基本在每个App中都存在，如下图所示：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1777873-d9f5dd1d4365ae31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2017-05-12 下午3.58.11.png"></p>
+          <h3 id="1-冒泡排序算法"><a href="#1-冒泡排序算法" class="headerlink" title="1.冒泡排序算法"></a>1.冒泡排序算法</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 冒泡排序算法</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param mutableArray 需要排序的数组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)bubbleSortArray:(<span class="built_in">NSMutableArray</span> *)mutableArray &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mutableArray.count; i ++) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; mutableArray.count - <span class="number">1</span>; j ++) &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (mutableArray[j] &gt; mutableArray[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                </span><br><span class="line">                [mutableArray exchangeObjectAtIndex:j withObjectAtIndex:j + <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/带PlaceHolder的UITextView/#more" rel="contents">
+            <a class="btn" href="/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1286,7 +1480,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/带PlaceHolder的UITextView/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -1305,7 +1499,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/" itemprop="url">基本排序算法的OC实现</a></h1>
+                <a class="post-title-link" href="/2018/01/12/带PlaceHolder的UITextView/" itemprop="url">带PlaceHolder的UITextView</a></h1>
         
 
         <div class="post-meta">
@@ -1357,7 +1551,7 @@
 
           
           
-             <span id="/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/" class="leancloud_visitors" data-flag-title="基本排序算法的OC实现">
+             <span id="/2018/01/12/带PlaceHolder的UITextView/" class="leancloud_visitors" data-flag-title="带PlaceHolder的UITextView">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1382,7 +1576,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  412字
+                  363字
                 </span>
               
 
@@ -1420,397 +1614,11 @@
 
       
         
-          <h3 id="1-冒泡排序算法"><a href="#1-冒泡排序算法" class="headerlink" title="1.冒泡排序算法"></a>1.冒泡排序算法</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 冒泡排序算法</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param mutableArray 需要排序的数组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)bubbleSortArray:(<span class="built_in">NSMutableArray</span> *)mutableArray &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mutableArray.count; i ++) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; mutableArray.count - <span class="number">1</span>; j ++) &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (mutableArray[j] &gt; mutableArray[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                </span><br><span class="line">                [mutableArray exchangeObjectAtIndex:j withObjectAtIndex:j + <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h3 id="带PlaceHolder的UITextView"><a href="#带PlaceHolder的UITextView" class="headerlink" title="带PlaceHolder的UITextView"></a>带PlaceHolder的UITextView</h3><p>在日常开发中，用户反馈界面基本在每个App中都存在，如下图所示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1777873-d9f5dd1d4365ae31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2017-05-12 下午3.58.11.png"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/冒泡排序算法,选择排序算法,快速排序算法的OC实现/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/浅谈iOS中MVC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="浪漫恋星空">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="浪漫恋星空的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/12/浅谈iOS中MVC/" itemprop="url">浅谈iOS中的MVC</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/12/浅谈iOS中MVC/" class="leancloud_visitors" data-flag-title="浅谈iOS中的MVC">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,416字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长&#58;</span>
-                
-                <span title="阅读时长">
-                  约6分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote>
-<p>MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。</p>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/1777873-e496eccdb5a8c0e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MVC.png"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/浅谈iOS中MVC/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="浪漫恋星空">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="浪漫恋星空的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/" itemprop="url">从零开始 一步步将自己的框架导入CocoaPods</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/" class="leancloud_visitors" data-flag-title="从零开始 一步步将自己的框架导入CocoaPods">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,173字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长&#58;</span>
-                
-                <span title="阅读时长">
-                  约4分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>对于做iOS开发的来说，不知道CocoaPods无异于耍流氓。日常开发中我们经常会使用它来管理我们的三方库。用别人的框架用得太多了，慢慢的，撸的代码越来越多，会发现自己在不知不觉间收集了很多好用的扩展，或者那天自己写出一个比较优秀的效果，会想着将这些东西分享出来。当然，我们可以将代码直接丢到GitHub之类的代码托管平台，供大家参考。某年某月某一天，你心血来潮的也想撸个框架。什么？你写了一个框架，竟然不支持CocoaPods？程序员大多数都是懒的，能用一行代码解决的事情绝不写两行，更何况CocoaPods这么好用的东西，好的框架不支持怎么行啊？这里把自己写的小东西是如何一步一步支持CocoaPods的作一个介绍。希望有需要的小伙伴能从这里看到你想要的东西。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/从零开始--一步步将自己的框架导入CocoaPods/#more" rel="contents">
+            <a class="btn" href="/2018/01/12/带PlaceHolder的UITextView/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2068,7 +1876,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/一个简单的获取验证码控件的封装/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/IQKeyboardManager导航栏上移/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浪漫恋星空">
@@ -2087,7 +1895,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/12/一个简单的获取验证码控件的封装/" itemprop="url">一个简单的获取验证码控件的封装</a></h1>
+                <a class="post-title-link" href="/2018/01/12/IQKeyboardManager导航栏上移/" itemprop="url">IQKeyboardManager导航栏上移</a></h1>
         
 
         <div class="post-meta">
@@ -2139,7 +1947,7 @@
 
           
           
-             <span id="/2018/01/12/一个简单的获取验证码控件的封装/" class="leancloud_visitors" data-flag-title="一个简单的获取验证码控件的封装">
+             <span id="/2018/01/12/IQKeyboardManager导航栏上移/" class="leancloud_visitors" data-flag-title="IQKeyboardManager导航栏上移">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2164,7 +1972,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,325字
+                  280字
                 </span>
               
 
@@ -2180,7 +1988,7 @@
                   <span class="post-meta-item-text">阅读时长&#58;</span>
                 
                 <span title="阅读时长">
-                  约6分钟
+                  约1分钟
                 </span>
               
             </div>
@@ -2202,11 +2010,216 @@
 
       
         
-          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>在日常的开发过程中，获取验证码是一个常见的功能。一般情况下，为了提高用户体验，产品都会在点击获取验证码之后，让这个点击控件做一个渐变动画，设置一个时长，然后可以点击重新获取。这是一个非常简单且经常用到的功能，可以考虑将这个小控件直接封装出来，方便随时使用。</p>
-<h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h3><p><img src="http://upload-images.jianshu.io/upload_images/1777873-110fedabc97ea4c4.gif?imageMogr2/auto-orient/strip" alt="效果.gif"></p>
+          
+            <p>使用IQKeyboardManager来处理项目中的文本框被遮挡的问题是一个很好的选择, 但是也因为这个三方框架自动做了太多的事情有时候会导致一些很奇怪的问题。最常见的就是当控制器带有导航栏的时候会导致导航栏上移。官方Demo中也有提供一些解决方法。最近在实现一个表单提交页的时候，在UITableViewCell中有UITextField，在使用IQKeyboardManager的过程中也发现导航栏有上移的情况。但是我看Demo中并不会出现这样的情况。后来发现，在布局UITableView的时候，是直接设置的frame为self.view.bounds，看起来并没有什么大问题，但是这样IQKeyboardManager在处理的时候会让整个View的frame都上移，导航栏也就跟着偏移了。正确的做法是让UITableView的frame从导航栏下面开始布局。像这样</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLayoutSubviews</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLayoutSubviews];</span><br><span class="line">    [<span class="keyword">self</span>.tableView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">        make.top.mas_equalTo(kTopHeight);</span><br><span class="line">        make.bottom.left.right.mas_equalTo(<span class="number">0</span>);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，导航栏就不会被顶出屏幕了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/01/12/iOS打包配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浪漫恋星空">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.qqzhi.com/uploadpic/2014-05-04/153208358.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浪漫恋星空的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/12/iOS打包配置/" itemprop="url">iOS打包配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:12:22+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/12/iOS打包配置/" class="leancloud_visitors" data-flag-title="iOS打包配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,174字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长&#58;</span>
+                
+                <span title="阅读时长">
+                  约4分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="一-开发账号介绍"><a href="#一-开发账号介绍" class="headerlink" title="一. 开发账号介绍"></a>一. 开发账号介绍</h3><p>苹果的开发者账号主要分为三类：</p>
+<ul>
+<li>个人（Individual）</li>
+<li>组织（Organizations）</li>
+<li>教育机构（Educational Institutions）</li>
+</ul>
+<p>其中“组织”中又分为2个小类：</p>
+<ul>
+<li>公司（Company）</li>
+<li>企业（Enterprise）</li>
+</ul>
+<p>我们经常最关注的是个人、公司、企业这3类：</p>
+<ul>
+<li>个人：个人账号只支持单人开发，即一个主体账号，可以申请升级为公司帐号。</li>
+<li>公司：公司账号和企业账号支持协作开发，可邀请其他人加入团队，比个人多一些帐号管理的设置，可设置多个Apple ID，分4种管理级别的权限。</li>
+<li>企业：企业账号大多用于内部分发测试。跟前面两种账号不同的是，个人和公司账号开发的应用可以上线App Store，企业账号则不能。</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/一个简单的获取验证码控件的封装/#more" rel="contents">
+            <a class="btn" href="/2018/01/12/iOS打包配置/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
